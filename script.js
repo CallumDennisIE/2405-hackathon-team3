@@ -1,8 +1,8 @@
 // Define the cards
 class Card {
-    constructor(name, power, defense, force, side, imageName) {
+    constructor(name, attack, defense, force, side, imageName) {
         this.name = name;
-        this.power = power;
+        this.attack = attack;
         this.defense = defense;
         this.force = force;
         this.side = side;
@@ -23,7 +23,7 @@ const shuffleDeck = (array) => {
     }
 };
 
-// Set random values for power, defense, and force
+// Set random values for attack, defense, and force
 const getRandomNumber = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -39,12 +39,12 @@ const getRandomNumber = (min, max) => {
 // Set the deck
 let deck = [];
 ['Luke Skywalker', 'Darth Vader', 'Grogu', 'Obi-Wan Kenobi', 'Emperor Palpatine', 'Han Solo', 'Leia Organa', 'Chewbacca', 'Boba Fett', 'Rey'].forEach(character => {
-    const power = getRandomCommonValue(); // Common value
+    const attack = getRandomCommonValue(); // Common value
     const defense = getRandomCommonValue();
     const force = getRandomCommonValue();
     const side = character.includes('Dark') ? 'Dark' : 'Light';
     const imageName = `${character.toLowerCase().replace(/\s+/g, '_')}_${side.toLowerCase()}.jpg`; // Convent the image name
-    deck.push(new Card(character, power, defense, force, side, imageName));
+    deck.push(new Card(character, attack, defense, force, side, imageName));
 });
 
 console.log(deck.map(card => card.name).join(', '));
@@ -84,8 +84,8 @@ while (userSide !== 'light' && userSide !== 'dark') {
 function playRound(playerDeck, computerDeck, attribute, userSide) {
     let playerCard = playerDeck.shift();
     let computerCard = computerDeck.shift();
-    console.table(`Player's card: ${playerCard.name} (Power=${playerCard.power}, Defense=${playerCard.defense}, Force=${playerCard.force})`);
-    console.table(`Computer's card: ${computerCard.name} (Power=${computerCard.power}, Defense=${computerCard.defense}, Force=${computerCard.force})`);
+    console.table(`Player's card: ${playerCard.name} (Attack=${playerCard.attack}, Defense=${playerCard.defense}, Force=${playerCard.force})`);
+    console.table(`Computer's card: ${computerCard.name} (Attack=${computerCard.attack}, Defense=${computerCard.defense}, Force=${computerCard.force})`);
 
     let result = compareCards(playerCard, computerCard, attribute);
 
@@ -113,7 +113,7 @@ function playRound(playerDeck, computerDeck, attribute, userSide) {
 
 // Play the game until one player runs out of cards
 while (playerDeck.length > 0 && computerDeck.length > 0) {
-    let attributes = ['power', 'defense', 'force'];
+    let attributes = ['attack', 'defense', 'force'];
     let attribute = attributes[Math.floor(Math.random() * attributes.length)];
     console.table(`\n--- Next Round ---`);
     console.log(`Attribute for this round: ${attribute.toUpperCase()}`);
