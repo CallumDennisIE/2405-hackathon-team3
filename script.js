@@ -5,6 +5,23 @@ document.addEventListener("DOMContentLoaded", function () {
     let timeLeft = 10;
     let isPaused = false;
     let currentPlayer = 'player';  // Track whose turn it is
+    let userCredits = 1000;
+    const cardPackCost = 500;
+    const upgradeCost = 500;
+    let purchasedCards = [];
+
+    const characters = [
+        'Luke Skywalker',
+        'Darth Vader',
+        'Grogu',
+        'Obi-Wan Kenobi',
+        'Emperor Palpatine',
+        'Han Solo',
+        'Leia Organa',
+        'Chewbacca',
+        'Boba Fett',
+        'Rey'
+    ];
 
     function startCountdown() {
         timeLeft = 10;
@@ -95,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Set the deck
     let deck = [];
-    ['Luke Skywalker', 'Darth Vader', 'Grogu', 'Obi-Wan Kenobi', 'Emperor Palpatine', 'Han Solo', 'Leia Organa', 'Chewbacca', 'Boba Fett', 'Rey'].forEach(character => {
+    characters.forEach(character => {
         const attack = getRandomCommonValue(); // Common value
         const defense = getRandomCommonValue();
         const force = getRandomCommonValue();
@@ -106,22 +123,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log(deck.map(card => card.name).join(', '));
 
-    // Placeholder for user credits
-    // let userCredits = 1000;
+    // Should we generate the first cards at random here to add to the users deck?
 
+    // Purchase extra card pack function
+    function purchaseCardPack() {
+        if (userCredits >= cardPackCost) {
+        userCredits -= cardPackCost;
+        updateCreditsDisplay();
+    
+        const newCards = getRandomCards(3); // shall we do 3 cards pfor each new pack
+        purchasedCards.push(...newCards);
+    
+        // updatePurchasedCardsDisplay();
+        } else {
+        console.log("Insufficient credits to purchase a card pack.");
+        }
+    }
 
+    // Function to purchase an upgrade
+    function purchaseUpgrade(card) {
+        if (userCredits >= upgradeCost) {
+            card.upgrade();
+            userCredits -= upgradeCost;
+            console.log(`${card.name} has been upgraded to Rare`);
+        } else {
+            console.log("Insufficient credits to purchase this upgrade.");
+        }
+    }
 
-    //  Function to purchase an upgrade - will see about that
-    // function purchaseUpgrade(card) {
-    //     const upgradeCost = 500;
-    //     if (userCredits >= upgradeCost) {
-    //         card.upgrade();
-    //         userCredits -= upgradeCost;
-    //         console.log(`${card.name} has been upgraded to Rare`);
-    //     } else {
-    //         console.log("Insufficient credits to purchase this upgrade.");
-    //     }
-    // }
+    // Function to generate 3 random cards upon purchasing
+    function getRandomCards(numCards) {
+        let newCards = [];
+        for (let i = 0; i < numCards; i++) {
+            let randomCharacterIndex = Math.floor(Math.random() * characters.length);
+            let character = characters[randomCharacterIndex];
+            const attack = getRandomCommonValue();
+            const defense = getRandomCommonValue();
+            const force = getRandomCommonValue();
+            const side = character.includes('Dark') ? 'Dark' : 'Light';
+            const imageName = `${character.toLowerCase().replace(/\s+/g, '_')}_${side.toLowerCase()}.jpg`;
+
+            let newCard = new Card(character, attack, defense, force, side, imageName);
+            newCards.push(newCard);
+        }
+        return newCards;
+    }
+
+    // Function to update credits
+    function updateCreditsDisplay() {    
+        let creditsDisplay = document.getElementById('creditsDisplay');
+        creditsDisplay.textContent = `Credits: £{userCredits}`;
+    }
+    
 
     // Shuffle the deck
     shuffleDeck(deck);
