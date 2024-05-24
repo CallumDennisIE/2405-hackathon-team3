@@ -1,117 +1,104 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let countdownElement = document.getElementById('countdown');
-    let gameContainer = document.getElementById('gameContainer');
+    const countdownElement = document.getElementById('countdown'); // Dummy - eligible to change
+    const gameContainer = document.getElementById('gameContainer'); // Dummy - eligible to change
     let timer;
     let timeLeft = 10;
     let isPaused = false;
-    let currentPlayer = 'player';  // Track whose turn it is
-
-    function startCountdown() {
+    let currentPlayer = 'player';
+    // IDs above might change 
+    const startCountdown = () => {
         timeLeft = 10;
         countdownElement.textContent = timeLeft;
         timer = setInterval(() => {
             if (!isPaused) {
-                timeLeft--;
-                countdownElement.textContent = timeLeft;
+                countdownElement.textContent = --timeLeft; // Decrement and update the countdown
                 if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    endTurn();
+                    clearInterval(timer); // Stop the timer when time runs out
+                    endTurn(); // End the current turn
                 }
             }
-        }, 1000);
-    }
+        }, 1000); // 1000ms = 1second
+    };
 
-    function endTurn() {
+
+    const endTurn = () => {
         console.log("Turn ended");
+
+        // Switch the current player
         currentPlayer = currentPlayer === 'player' ? 'computer' : 'player';
+
+        // If it's the computer's turn
         if (currentPlayer === 'computer') {
             clearInterval(timer); // Clear any running timer
             setTimeout(() => {
-                playComputerTurn();
-                currentPlayer = 'player';
-                startCountdown();  // Restart countdown for player's turn
-            }, 3000);  // 3-second timeout for computer's turn
+                playComputerTurn(); // Run the computer's turn
+                currentPlayer = 'player'; // Switch back to the player's turn
+                startCountdown(); // Restart countdown for player's turn
+            }, 3000); // 3sec delay for the computer's turn
         } else {
-            startCountdown();  // Restart countdown for the next player's turn
+            startCountdown();
         }
-    }
+    };
 
-    function pauseCountdown() {
-        isPaused = true;
-    }
 
-    function resumeCountdown() {
-        isPaused = false;
-    }
+    const pauseCountdown = () => { isPaused = true; };
+    const resumeCountdown = () => { isPaused = false; };
 
-    // Event listeners to pause and resume countdown
-    document.addEventListener('click', function (event) {
-        if (!gameContainer.contains(event.target)) {
-            pauseCountdown();
-        } else {
-            resumeCountdown();
-        }
+    document.addEventListener('click', (event) => {
+        // Resume countdown if user clicks inside the game container, else pause it
+        gameContainer.contains(event.target) ? resumeCountdown() : pauseCountdown();
     });
 
     // Define the cards
     class Card {
         constructor(name, attack, defense, force, side, imageName) {
-            this.name = name;
-            this.attack = attack;
-            this.defense = defense;
-            this.force = force;
-            this.side = side;
-            this.imageName = imageName;
-            this.rarity = 'common';
+            // Set the cards properties with object = cards - assign with "this" method
+            Object.assign(this, { name, attack, defense, force, side, imageName, rarity: 'common' });
         }
-
-        upgrade() {
-            this.rarity = 'rare';
-        }
+        upgrade() { this.rarity = 'rare'; }
     }
 
-    // Function to shuffle an array
+
+    // Fisher-Yates shuffle algorithm 
     const shuffleDeck = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            const j = Math.floor(Math.random() * (i + 1)); // Pick a random index
+            [array[i], array[j]] = [array[j], array[i]]; // Swap cards(elements) at i and j
         }
     };
 
-    // Set random values for attack, defense, and force
-    const getRandomNumber = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    };
+
+    const getRandomCommonValue = () => getRandomNumber(10, 100); // Common value
+    // const getRandomRareValue = () => getRandomNumber(70, 130); // Rare value
+    const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min; // Pick random stats for each rarity (within the min-max values)
 
 
-    // const getRandomCommonValue = () => {
-    //     return getRandomNumber(10, 100);
-    // };
 
-    // const getRandomRareValue = () => {
-    //     return getRandomNumber(70, 130);
-    // };
+    // Stores the cards
+    const deck = [];
 
-
-    // Set the deck
-    let deck = [];
+    // Go through each name to create a card for it
     ['Luke Skywalker', 'Darth Vader', 'Grogu', 'Obi-Wan Kenobi', 'Emperor Palpatine', 'Han Solo', 'Leia Organa', 'Chewbacca', 'Boba Fett', 'Rey'].forEach(character => {
-        const attack = getRandomCommonValue(); // Common value
-        const defense = getRandomCommonValue();
-        const force = getRandomCommonValue();
+        const attack = getRandomNumber(10, 100); // Common
+        const defense = getRandomNumber(10, 100); // Common
+        const force = getRandomNumber(10, 100); // Common
+
         const side = character.includes('Dark') ? 'Dark' : 'Light';
-        const imageName = `${character.toLowerCase().replace(/\s+/g, '_')}_${side.toLowerCase()}.jpg`; // Convert the image name inside the card - might change
+
+        // Create the image for the character based on the side - will look to it further
+        const imageName = `${character.toLowerCase().replace(/\s+/g, '_')}_${side.toLowerCase()}.png`;
+
+        // Create new card for the character with these attributes - img and push it to the deck
         deck.push(new Card(character, attack, defense, force, side, imageName));
     });
 
+    // Log the names of all cards in the deck separated by a comma and space
     console.log(deck.map(card => card.name).join(', '));
 
-    // Placeholder for user credits
+
+    // E X P E R I M E N T A L
     // let userCredits = 1000;
 
-
-
-    //  Function to purchase an upgrade - will see about that
     // function purchaseUpgrade(card) {
     //     const upgradeCost = 500;
     //     if (userCredits >= upgradeCost) {
@@ -123,98 +110,77 @@ document.addEventListener("DOMContentLoaded", function () {
     //     }
     // }
 
-    // Shuffle the deck
     shuffleDeck(deck);
 
-    // Split the deck between the player and computer
     let playerDeck = deck.slice(0, 5);
     let computerDeck = deck.slice(5, 10);
 
-    // Prompt the user to choose their side
+    // We'll see about this - Side
     let userSide = '';
-    while (userSide !== 'light' && userSide !== 'dark') {
+    while (!['light', 'dark'].includes(userSide)) {
         userSide = prompt("Choose your side: Light or Dark Side").trim().toLowerCase();
     }
 
-    // Function to play a round
-    function playRound(playerDeck, computerDeck, attribute, userSide) {
-        let playerCard = playerDeck.shift();
-        let computerCard = computerDeck.shift();
+    const playRound = (playerDeck, computerDeck, attribute, userSide) => {
+        // Draw a card from both player and computer deck
+        const playerCard = playerDeck.shift();
+        const computerCard = computerDeck.shift();
+        // Display the details of the cards
         console.table(`Player's card: ${playerCard.name} (Attack=${playerCard.attack}, Defense=${playerCard.defense}, Force=${playerCard.force})`);
         console.table(`Computer's card: ${computerCard.name} (Attack=${computerCard.attack}, Defense=${computerCard.defense}, Force=${computerCard.force})`);
 
-        let result = compareCards(playerCard, computerCard, attribute);
+        // Compare the drawn cards based on the attribute
+        const result = compareCards(playerCard, computerCard, attribute);
 
         if (result === 'A') {
-            if (userSide === 'light') {
-                console.table(`The Force is strong with ${playerCard.name}! Light Side wins the round with ${attribute}.`);
-            } else {
-                console.table(`The Dark side prevails with ${playerCard.name}! Dark Side wins the round with ${attribute}.`);
-            }
+            // Player wins
+            console.table(`${userSide === 'light' ? 'The Force is strong' : 'The Dark side prevails'} with ${playerCard.name}! ${userSide === 'light' ? 'Light' : 'Dark'} Side wins the round with ${attribute}.`);
             playerDeck.push(playerCard, computerCard);
         } else if (result === 'B') {
-            if (userSide === 'light') {
-                console.table(`The Dark side prevails with ${computerCard.name}. Dark Side wins the round with ${attribute}.`);
-            } else {
-                console.table(`The Force is strong with ${computerCard.name}! Light Side wins the round with ${attribute}.`);
-            }
+            // Computer wins
+            console.table(`${userSide === 'light' ? 'The Dark side prevails' : 'The Force is strong'} with ${computerCard.name}! ${userSide === 'light' ? 'Dark' : 'Light'} Side wins the round with ${attribute}.`);
             computerDeck.push(playerCard, computerCard);
         } else {
+            // None wins
             console.log("It's a tie! Both cards are discarded into the Sarlacc pit.");
         }
 
+        // Display the updated decks (in a table format)
         console.table(`Player's deck size: ${playerDeck.length}`);
         console.table(`Computer's deck size: ${computerDeck.length}`);
-    }
+    };
 
-    // Function to compare two cards
-    function compareCards(playerCard, computerCard, attribute) {
-        if (playerCard[attribute] > computerCard[attribute]) {
-            return 'A';
-        } else if (playerCard[attribute] < computerCard[attribute]) {
-            return 'B';
-        } else {
-            return 'Tie';
-        }
-    }
+    // Compare the values of the attributes of player and computer cards
+    const compareCards = (playerCard, computerCard, attribute) => playerCard[attribute] > computerCard[attribute] ? 'A' : playerCard[attribute] < computerCard[attribute] ? 'B' : 'Tie';
 
-    // Function to play computer's turn
-    function playComputerTurn() {
+    const playComputerTurn = () => {
+        // Check if both player and computer decks are not empty
         if (playerDeck.length > 0 && computerDeck.length > 0) {
-            let attributes = ['attack', 'defense', 'force'];
-            let attribute = attributes[Math.floor(Math.random() * attributes.length)];
+            // Choose a random attribute for the computers turn
+            const attribute = ['attack', 'defense', 'force'][Math.floor(Math.random() * 3)];
             console.table(`\n--- Next Round ---`);
             console.log(`Attribute for this round: ${attribute.toUpperCase()}`);
             playRound(playerDeck, computerDeck, attribute, userSide);
         }
-
-        // Check if the game has ended after the computer's turn
         checkGameEnd();
-    }
+    };
 
-    // Check if the game has ended
-    function checkGameEnd() {
+    const checkGameEnd = () => {
+        // Check if either player or computer deck is empty
         if (playerDeck.length === 0 || computerDeck.length === 0) {
+            // Player won
             const playerWins = playerDeck.length > computerDeck.length;
+            // Computer won
+            const computerWins = playerDeck.length < computerDeck.length;
 
-            if (playerWins) {
-                const victoryMessage = userSide === 'light' ?
-                    "\nYou emerge victorious! The Force will be with you, always." :
-                    "\nYou emerge victorious! The dark side has triumphed.";
-                console.log(victoryMessage);
-            } else if (!playerWins && playerDeck.length < computerDeck.length) {
-                const victoryMessage = userSide === 'light' ?
-                    "\nBT-1 wins! The dark side has triumphed." :
-                    "\nR2D2 wins! The light side prevails.";
-                console.log(victoryMessage);
-            } else {
-                console.log("\nThe game is a tie! Balance has been restored to the Force.");
-            }
-
-            clearInterval(timer);  // Stop the countdown
+            // Return the victory message adapted on the winner or tie
+            return playerWins ?
+                (userSide === 'light' ? 'May the Force be with you! You have emerged victorious for the Light Side.' : 'The power of the Dark Side prevails! Victory is yours!') :
+                (computerWins ?
+                    (userSide === 'light' ? 'The Dark Side has triumphed! The balance has shifted.' : 'The Light Side has been extinguished! The Dark Side reigns supreme!') :
+                    'A tie! The Force remains in balance.');
         }
-    }
+    };
 
-    // Start the game
     startCountdown();
 });
