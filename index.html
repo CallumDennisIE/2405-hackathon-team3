@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience the Star Wars universe with a Top Trumps style Card Battler set in Dexter Jettster's Canteen.">
+    <meta name="keywords" content="Star Wars card game, Top Trumps, Card Battler, Dexter Jettster's Canteen, Star Wars, battle cards, card game, Star Wars characters">
+    <title>Star Wars Card Game</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/images/favicon/site.webmanifest">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- top line of game container with instructions -->
+        <div class="top-line">
+            <i class="far fa-user-circle user-icon" id="user-icon" aria-hidden="true"></i>
+            <p id="username"></p>
+            <i id="instructions-icon" class="fa-solid fa-circle-info"></i>
+        </div>
+
+        <!-- Main screen with game title and user login -->
+        <div id="login-screen">
+            <p>Welcome To</p>
+            <h1 class="game-title">Star Wars Card Game</h1>
+            <div class="user-input">
+                <label for="user">Please enter your name</label>
+                <br />
+                <input type="text" id="user" name="user" maxlength="12" placeholder="Type your name..." />
+            </div>
+            <button class="button" id="user-log">Start Game</button>
+
+            <p class="user-log-error" id="error-message">
+                Please try again. <br />Username must be between 1 and 12 characters.
+            </p>
+        </div>
+
+        <!-- Modal with game instructions -->
+        <div id="myModal" class="modal border-2">
+            <div class="modal-content">
+                <div>
+                    <h2 id="modal-header">How to play</h2>
+                    <ul>
+                        <li>
+                            1. Start the Game:Both players have a stack of facedown cards.
+                        </li>
+                        <li>2.Rounds:</li>
+                        <li>•Player’s Turn:</li>
+                        <li>
+                            1.Player selects a stat from their top card. <br />
+                            2.Announces the chosen stat.
+                        </li>
+                        <li>•Computer’s Turn:</li>
+                        <li>
+                            1.Computer randomly selects a stat from its top card.<br />
+                            2.Reveals the selected stat.
+                        </li>
+                        <li>•Compare Stats:</li>
+                        <li>
+                            1.Reveal both top cards and compare stats.<br />
+                            2.Higher value wins the round.
+                        </li>
+                        <li>•Collect Cards:</li>
+                        <li>
+                            1.Winner takes both cards and places them at the bottom of their
+                            stack.<br />
+                            2.Winner starts the next round by selecting a stat from their
+                            new top card.
+                        </li>
+                        <li>•End of the Game:</li>
+                        <li>Game ends when a player runs out of cards (they lose).</li>
+                        <li>
+                            In case of a tie, cards go to a "tie pile." The next round's
+                            winner takes all the cards in the tie pile.
+                        </li>
+                    </ul>
+                    <strong>Enjoy!</strong>
+                </div>
+                <button class="button" id="close-btn">Close</button>
+            </div>
+        </div>
+
+        <div id="main-game-container">
+            <h1>Star Wars Card Game</h1>
+            <div class="cards-container">
+                <div class="player-cards">
+                    <h2>Player's Cards</h2>
+                    <div id="player-card" class="card">
+                        <div class="flip-card" tabIndex="0">
+                          <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                              <img src="assets/images/cards/card_basic_front_grogu.png" class="card-image" alt="Front of Card Grogu">
+                            </div>
+                            <div class="flip-card-back">
+                              <img src="assets/images/cards/card_basic_back.png" class="card-image" alt="Back of Card">
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="computer-cards">
+                    <h2>Computer's Cards</h2>
+                    <div id="computer-card" class="card"></div>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="buttons">
+                    <div class="button">
+                        <img src="assets/images/buttons/strength.png" class="button-image" alt="Strength Button">
+                    </div>
+                    <div class="button">
+                        <img src="assets/images/buttons/defense.png" class="button-image" alt="Defense Button">
+                    </div>
+                    <div class="button">
+                        <img src="assets/images/buttons/force.png" class="button-image" alt="Force Button">
+                    </div>
+                </div>
+                <button id="next-round" onclick="playRound()">Play Round</button>
+            </div>
+            <div class="status">
+                <p id="status-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/2b6a1cc583.js" crossorigin="anonymous"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
