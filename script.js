@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let userCredits = 1000;
     const cardPackCost = 500;
     const upgradeCost = 500;
+    const creditsPerRoundWin = 50;
+    const creditsPerGameEndWin = 300;
     let purchasedCards = [];
 
     const characters = [
@@ -128,6 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Player wins
             console.log(`${userSide === 'light' ? 'The Force is strong' : 'The Dark side prevails'} with ${playerCard.name}! ${userSide === 'light' ? 'Light' : 'Dark'} Side wins the round with ${attribute}.`);
             playerDeck.push(playerCard, computerCard);
+            userCredits += creditsPerRoundWin;
+            updateCreditsDisplay();
+            updateMessageDisplay(`Awesome work, here is ${creditsPerRoundWin} credits!`);
+            console.log(`Awesome work, here is ${creditsPerRoundWin} credits!`);
         } else if (result === 'B') {
             // Computer wins
             console.log(`${userSide === 'light' ? 'The Dark side prevails' : 'The Force is strong'} with ${computerCard.name}! ${userSide === 'light' ? 'Dark' : 'Light'} Side wins the round with ${attribute}.`);
@@ -169,6 +175,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     'A tie! The Force remains in balance.');
 
             console.log(message);
+
+            if (playerWins) {
+                userCredits += creditsPerGameEndWin;
+                updateCreditsDisplay();
+                updateMessageDisplay(`You earned ${creditsPerGameEndWin} credits for winning this game!`);
+                // remove console.log once happy update message is working
+                console.log(`You earned ${creditsPerGameEndWin} credits for winning this game!`);
+            }
         }
     };
 
@@ -216,8 +230,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to update the display of user credits
     function updateCreditsDisplay() {
-        console.log(`User credits: ${userCredits}`);
+        document.getElementById('creditsDisplay').textContent = `Credits: ${userCredits}`;
+    }
+
+    // Gives feedback to the user
+    function updateMessageDisplay(message) {
+        document.getElementById('messageDisplay').textContent = message;
     }
 
     startCountdown();
+
+    // Event listener for purchasing card pack
+    document.getElementById('purchaseCardPackBtn').addEventListener('click', purchaseCardPack);
 });
