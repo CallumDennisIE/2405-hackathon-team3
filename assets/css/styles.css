@@ -316,6 +316,74 @@ button:hover {
     margin-top: 20px;
 }
 
+/* Game Over Screen */
+
+#game-over-screen {
+    background: url("../images/background/game-over-porkins-gif.gif") center/cover;
+    /* background: url("../images/background/game-over-porkins.png") center/cover no-repeat; */  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 5;
+    width: 90%;
+    height: 90%;
+    border-radius: 15px;
+    border: 5px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#game-over-screen h1 {
+    font-size: 3em;
+    margin: 0.2em;
+}
+
+#game-over-screen h2 {
+    font-style: italic;
+    font-size: 2em;
+    margin: 0.2em;
+}
+
+#game-over-screen .button {
+    position: relative;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+#game-over-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+#game-over-screen .button:hover {
+    background-color: #0056b3;
+}
+
+/* https://www.w3schools.com/cssref/func_attr.php */
+/* https://css-tricks.com/almanac/selectors/a/after-and-before/c*/
+#game-over-screen .button::before {
+    content: attr(data-original-text);
+}
+
+#new-game-yes:hover::before {
+    content: attr(data-hover-text);
+}
+
+#new-game-no:hover::before {
+    content: attr(data-hover-text);
+}
+
 
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
