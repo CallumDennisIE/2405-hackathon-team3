@@ -18,33 +18,31 @@
 
 <body>
     <main id="game-container">
-        <!-- Top line of game container with instructions -->
-        <div class="top-line">
+        <header class="top-line">
             <i class="far fa-user-circle user-icon" id="user-icon" aria-hidden="true"></i>
             <p id="username"></p>
-            <i id="instructions-icon" class="fa-solid fa-circle-info"></i>
-        </div>
+            <i id="instructions-icon" class="fa-solid fa-circle-info" aria-label="Game Instructions"></i>
+        </header>
 
-        <!-- Main screen with game title and user login -->
-        <section id="login-screen">
+        <section id="login-screen" aria-labelledby="game-title">
             <p>Welcome To</p>
-            <h1 class="game-title">Star Wars Card Game</h1>
+            <h1 id="game-title" class="game-title">Star Wars Card Game</h1>
             <div class="user-input">
                 <label for="user">Please enter your name</label>
                 <br />
                 <input type="text" id="user" name="user" maxlength="12" placeholder="Type your name..." />
             </div>
             <button class="button" id="user-log">Start Game</button>
-            <p class="user-log-error" id="error-message">
+            <p class="user-log-error" id="error-message" aria-live="assertive">
                 Please try again. <br />Username must be between 1 and 12 characters.
             </p>
         </section>
 
-        <!-- Modal with game instructions -->
-        <section id="myModal" class="modal border-2">
+        <section id="myModal" class="modal border-2" aria-hidden="true" role="dialog" aria-labelledby="modal-header"
+            aria-describedby="modal-content">
             <div class="modal-content">
-                <span id="close-x-btn">&times;</span>
-                <div>
+                <span id="close-x-btn" role="button" tabindex="0" aria-label="Close Instructions">&times;</span>
+                <div id="modal-content">
                     <h2 id="modal-header">How to play</h2>
                     <ul>
                         <li>1. Start the Game: Both players have a stack of facedown cards.</li>
@@ -70,8 +68,8 @@
             </div>
         </section>
 
-        <section id="main-game-container">
-            <h1>Star Wars Card Game</h1>
+        <section id="main-game-container" aria-labelledby="main-game-title">
+            <h1 id="main-game-title">Star Wars Card Game</h1>
             <div class="credits-status">
                 <p id="creditsDisplay">Credits: 1000</p>
                 <p id="messageDisplay"></p>
@@ -80,7 +78,7 @@
                 <div class="player-cards">
                     <h2>Player's Cards</h2>
                     <div id="player-card" class="card">
-                        <div class="flip-card" tabIndex="0">
+                        <div class="flip-card" tabindex="0">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     <img src="assets/images/cards/card_basic_front_grogu.png" class="card-image"
