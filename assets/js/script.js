@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
 let mainLoginScreen = document.getElementById("login-screen");
 let getInstructions = document.getElementById("instructions-icon");
 let errorMessage = document.getElementById("error-message");
-let closeBtn = document.getElementById("close-btn");
 let mainGameScreen = document.getElementById("main-game-container");
+let modal = document.getElementById("myModal");
+let closeBtn = document.getElementById("close-btn");
+let closeXBtn = document.getElementById("close-x-btn");
 
 
 /**
@@ -56,18 +58,26 @@ checkUsername();
 getInstructions.addEventListener("click", showInstructions);
 
 function showInstructions() {
-    let modal = document.getElementById("myModal");
     modal.classList.add("show-modal");
     document.body.classList.add('greyout-background'); //grey out the background picture when modal pops-up.
 }
 
 closeBtn.addEventListener("click", closeInstructions);
+closeXBtn.addEventListener("click", closeInstructions);
 
 function closeInstructions() {
-    let modal = document.getElementById("myModal");
     modal.classList.remove("show-modal");
     document.body.classList.remove('greyout-background');
 }
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+        if (modal.classList.contains("show-modal")) {
+            closeInstructions();
+        }
+    }
+});
+
 
 /**
  * Allow users to input their username by pressing the enter key

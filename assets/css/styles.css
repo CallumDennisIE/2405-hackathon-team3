@@ -96,15 +96,43 @@ input::placeholder {
     float: right;
 }
 
-#login-screen,
-#phrase,
-.result-text {
-    text-transform: uppercase;
+#instructions-icon:hover, 
+#instructions-icon:focus {
+    cursor:pointer; 
+}
+
+#close-x-btn {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#close-x-btn:hover, 
+#close-x-btn:focus {
+    text-decoration: none;
+    cursor:pointer; 
+}
+
+#close-x-btn {
+    cursor:pointer; 
 }
 
 #close-btn {
-    width: 30%;
+    width: 40%;
 }
+
+#close-btn:hover, 
+#close-btn:focus {
+    cursor:pointer; 
+}
+
+#login-screen{
+    text-transform: uppercase;
+}
+
 
 /* Style for message when no user input*/
 .user-log-error {
