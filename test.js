@@ -118,23 +118,18 @@ const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)
 
 
 const characters = [
-
     { name: 'Luke Skywalker', attack: 1, defense: 2, force: 3, side: "Light", imageName: "card_basic_front_luke.png" },
-    { name: 'Lu per', attack: 1, defense: 2, force: 3, side: "Light", imageName: "card_basic_front_luke.png" },
-    { name: 'Lu er', attack: 1, defense: 2, force: 3, side: "Light", imageName: "card_basic_front_luke.png" },
-    { name: 'Lu ker', attack: 3, defense: 2, force: 3, side: "Light", imageName: "card_basic_front_luke.png" },
-    { name: 'Lu walker', attack: 2, defense: 10, force: 3, side: "Light", imageName: "card_basic_front_luke.png" }
-    // 'Darth Vader',
-    // 'Grogu',
-    // 'Obi-Wan Kenobi',
-    // 'Emperor Palpatine',
-    // 'Han Solo',
-    // 'Leia Organa',
-    // 'Chewbacca',
-    // 'Boba Fett',
-    // 'Rey'
-
+    { name: 'Darth Vader', attack: 9, defense: 8, force: 10, side: "Dark", imageName: "card_basic_front_vader.png" },
+    { name: 'Grogu', attack: 2, defense: 5, force: 9, side: "Light", imageName: "card_basic_front_grogu.png" },
+    { name: 'Obi-Wan Kenobi', attack: 7, defense: 6, force: 8, side: "Light", imageName: "card_basic_front_obiwan.png" },
+    { name: 'Emperor Palpatine', attack: 8, defense: 7, force: 10, side: "Dark", imageName: "card_basic_front_palpatine.png" },
+    { name: 'Han Solo', attack: 6, defense: 4, force: 2, side: "Light", imageName: "card_basic_front_han.png" },
+    { name: 'Leia Organa', attack: 5, defense: 6, force: 7, side: "Light", imageName: "card_basic_front_leia.png" },
+    { name: 'Chewbacca', attack: 7, defense: 7, force: 1, side: "Light", imageName: "card_basic_front_chewbacca.png" },
+    { name: 'Boba Fett', attack: 8, defense: 8, force: 2, side: "Dark", imageName: "card_basic_front_boba.png" },
+    { name: 'Rey', attack: 9, defense: 7, force: 8, side: "Light", imageName: "card_basic_front_rey.png" }
 ];
+
 
 
 function initCards() {
@@ -152,8 +147,8 @@ function initCards() {
         deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
     });
 
-    let playerDeck = deck.slice(0, 2);
-    let computerDeck = deck.slice(2, 5);
+    let playerDeck = deck.slice(0, 5);
+    let computerDeck = deck.slice(5, 10);
 
 
     console.log(playerDeck, computerDeck);
