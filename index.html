@@ -14,14 +14,11 @@
 </head>
 <body>
     <div id="game-container">
-        <!-- top line of game container with instructions -->
         <div class="top-line">
             <i class="far fa-user-circle user-icon" id="user-icon" aria-hidden="true"></i>
             <p id="username"></p>
             <i id="instructions-icon" class="fa-solid fa-circle-info"></i>
         </div>
-
-        <!-- Main screen with game title and user login -->
         <div id="login-screen">
             <p>Welcome To</p>
             <h1 class="game-title">Star Wars Card Game</h1>
@@ -31,22 +28,17 @@
                 <input type="text" id="user" name="user" maxlength="12" placeholder="Type your name..." />
             </div>
             <button class="button" id="user-log">Start Game</button>
-
             <p class="user-log-error" id="error-message">
                 Please try again. <br />Username must be between 1 and 12 characters.
             </p>
         </div>
-
-        <!-- Modal with game instructions -->
         <div id="myModal" class="modal border-2">
             <div class="modal-content">
                 <span id="close-x-btn">&times;</span>
                 <div>
                     <h2 id="modal-header">How to play</h2>
                     <ul>
-                        <li>
-                            1. Start the Game:Both players have a stack of facedown cards.
-                        </li>
+                        <li>1. Start the Game:Both players have a stack of facedown cards.</li>
                         <li>2.Rounds:</li>
                         <li>•Player’s Turn:</li>
                         <li>
@@ -82,9 +74,12 @@
                 <button class="button" id="close-btn">Close</button>
             </div>
         </div>
-
         <div id="main-game-container">
             <h1>Star Wars Card Game</h1>
+            <div class="credits-status">
+                <p id="creditsDisplay">Credits: 1000</p>
+                <p id="messageDisplay"></p>
+            </div>
             <div class="cards-container">
                 <div class="player-cards">
                     <h2>Player's Cards</h2>
@@ -125,7 +120,6 @@
             </div>
         </div>
     </div>
-
     <script src="https://kit.fontawesome.com/2b6a1cc583.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
 </body>
