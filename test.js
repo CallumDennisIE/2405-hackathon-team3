@@ -103,19 +103,13 @@ const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)
 
 
 
-// function shuffleDeck(array) {
-//     for (let i = array.length - 1; i > 0; i--) {
-//         let j = Math.floor(Math.random() * (i + 1)); // Pick a random index
-//         // [array[i], array[j]] = [array[j], array[i]]; // Swap cards(elements) at i and j
-//         array[i] = array[j]
-//         array[j] = array[i]
-
-//         console.log(array[i], array[j])
-//     }
-
-// };
-
-
+// Shuffle decks - needs minor change so only the correct side/deck is shuffled
+function shuffleDeck(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1)); // Pick a random index
+        [array[i], array[j]] = [array[j], array[i]]; // Swap cards(elements) at i and j
+    }
+}
 
 const characters = [
     { name: 'Luke Skywalker', attack: 1, defense: 2, force: 3, side: "Light", imageName: "card_basic_front_luke.png" },
@@ -129,8 +123,6 @@ const characters = [
     { name: 'Boba Fett', attack: 8, defense: 8, force: 2, side: "Dark", imageName: "card_basic_front_boba.png" },
     { name: 'Rey', attack: 9, defense: 7, force: 8, side: "Light", imageName: "card_basic_front_rey.png" }
 ];
-
-
 
 function initCards() {
     let deck = [];
@@ -147,26 +139,18 @@ function initCards() {
         deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
     });
 
+    shuffleDeck(deck);
+
+    // Split decks - player 1 to 5 / computer 6 to 10
     let playerDeck = deck.slice(0, 5);
     let computerDeck = deck.slice(5, 10);
-
 
     console.log("Player Deck");
     console.table(playerDeck);
     console.log("Computer Deck");
     console.table(computerDeck);
-
-    // shuffleDeck(deck)
-    // console.log(shuffleDeck(deck))
-
-    // Log the names of all cards in the deck separated by a comma and space
-    // console.log(deck.map(card => card.name).join(', '));
-
-    // shuffleDeck(deck);
-
-
-
 }
+
 
 
 function playRound() {
