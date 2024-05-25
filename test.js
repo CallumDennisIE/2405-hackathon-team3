@@ -151,7 +151,11 @@ function initCards() {
     let computerDeck = deck.slice(5, 10);
 
 
-    console.log(playerDeck, computerDeck);
+    console.log("Player Deck");
+    console.table(playerDeck);
+    console.log("Computer Deck");
+    console.table(computerDeck);
+
     // shuffleDeck(deck)
     // console.log(shuffleDeck(deck))
 
