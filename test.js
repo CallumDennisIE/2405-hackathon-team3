@@ -111,45 +111,14 @@ const getRandomCommonValue = () => getRandomNumber(10, 100); // Common value
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min; // Pick random stats for each rarity (within the min-max values)
 
 
-// Shuffle decks - needs minor change so only the correct side/deck is shuffled
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-// Shuffle decks - now shuffles the correct side/deck only
-function shuffleDeck(deck, side) {
-    const sideDeck = deck.filter(card => card.side === side); // Filter cards based on the side
-    const shuffledSideDeck = shuffleArray(sideDeck);
-
-
-
-    // Merge the shuffled deck back without mixing sides
-    let index = 0;
-    deck.forEach((card, i) => {
-        if (card.side === side) {
-            deck[i] = shuffledSideDeck[index++];
-        }
-    });
-}
 
 // Shuffle both Light and Dark side decks separately
-function shuffleDecks(deck) {
-    shuffleDeck(deck, 'Light');
-    shuffleDeck(deck, 'Dark');
-}
-
-function initCards() {
-    shuffleDecks(characters);
-    let deck = [];
-    characters.forEach(character => {
-        deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
-    });
-
-
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+    return deck;
 }
 
 const characters = [
@@ -194,26 +163,18 @@ const characters = [
 ];
 
 function initCards() {
-    shuffleDecks(characters);
     let deck = [];
     characters.forEach(character => {
-        // const attack = getRandomCommonValue(); // Common value
-        // const defense = getRandomCommonValue();
-        // const force = getRandomCommonValue();
-        // const side = character.includes('Darth') || character.includes('Emperor') ? 'Dark' : 'Light';
-
-        // Create the image for the character based on the side
-        // const imageName = `${character.toLowerCase().replace(/\s+/g, '_')}_${side.toLowerCase()}.png`;
-
-        // Create a new card for the character with these attributes - img and push it to the deck
         deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
     });
 
     shuffleDeck(deck);
 
     // Split decks - player / computer based on the side 
-    playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
-    computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
+    var half_length = Math.ceil(deck.length / 2);
+    
+    playerDeck = deck.slice(0, half_length);
+    computerDeck = deck.slice(half_length, deck.length);
 
     renderDeckToScreen(playerDeck, 'player-cards');
     renderDeckToScreen(computerDeck, 'computer-cards');
