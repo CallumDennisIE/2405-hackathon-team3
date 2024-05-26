@@ -64,6 +64,13 @@ getInstructions.addEventListener("click", showInstructions);
 let playerDeck;
 let computerDeck;
 
+
+let playerGameWins = 0;
+let computerGameWins = 0;
+let playerWins = 0;
+let computerWins = 0;
+
+
 function showInstructions() {
     modal.classList.add("show-modal");
     document.body.classList.add('greyout-background'); //grey out the background picture when modal pops-up.
@@ -259,7 +266,6 @@ function renderDeckToScreen(deck, containerId) {
 // ----------------- DO select attribute values for each card 
 
 
-// Function to display the selected attribute
 function displayAttribute(attribute) {
     console.log(`Attribute ${attribute} selected`);
     const playerCard = document.querySelector("#player-cards .card:last-child");
@@ -286,6 +292,8 @@ function displayAttribute(attribute) {
 
         if (result === 'A') {
             // Player wins
+            playerWins++;
+            console.log(`You win! Player wins: ${playerWins}, Computer wins: ${computerWins}`);
             // console.log(`${userSide === 'light' ? 'The Force is strong' : 'The Dark side prevails'} with ${playerCard.name}! ${userSide === 'light' ? 'Light' : 'Dark'} Side wins the round with ${attribute}.`);
             playerDeck.push(playerDeck[playerCardIndex], computerDeck[computerCardIndex]);
             playerDeck.splice(playerCardIndex, 1);
@@ -297,6 +305,8 @@ function displayAttribute(attribute) {
             console.log(`Awesome work, here is some money credits!`);
         } else if (result === 'B') {
             // Computer wins
+            computerWins++;
+            console.log(`Computer wins! Player wins: ${playerWins}, Computer wins: ${computerWins}`);
             // console.log(`${userSide === 'light' ? 'The Dark side prevails' : 'The Force is strong'} with ${computerCard.name}! ${userSide === 'light' ? 'Dark' : 'Light'} Side wins the round with ${attribute}.`);
             computerDeck.push(playerDeck[playerCardIndex], computerDeck[computerCardIndex]);
             playerDeck.splice(playerCardIndex, 1);
@@ -307,16 +317,19 @@ function displayAttribute(attribute) {
             playerDeck.splice(playerCardIndex, 1);
             computerDeck.splice(computerCardIndex, 1);
         }
+
+        document.getElementById("player-wins").innerText = playerWins;
+        document.getElementById("computer-wins").innerText = computerWins;
+
         checkGameEnd();
         renderDeckToScreen(playerDeck, 'player-cards');
         renderDeckToScreen(computerDeck, 'computer-cards');
 
-        // Display the updated decks
         console.log(`Player's deck size: ${playerDeck.length}`);
         console.log(`Computer's deck size: ${computerDeck.length}`);
     }
-
 }
+
 
 function displayAttributeButtons() {
     const buttonsContainer = document.querySelector('.buttons');
@@ -357,23 +370,33 @@ function selectCardAttribute() {
 
 selectCardAttribute();
 
+function updateGameResult(result) {
+    console.log("Result:", result);
+}
+
 function checkGameEnd() {
+    let result = '';
     if (playerDeck.length === 0 || computerDeck.length === 0) {
-        // Check if either player's or computer's deck is empty
-        // if (playerDeck.length === 0 && computerDeck.length === 0) {
-        //   // Both decks are empty, it's a tie
-        //   console.log("tie");
-        // } else 
         if (playerDeck.length < 1) {
-            // Player's deck is empty, computer wins
-            console.log("computer wins");
+            computerGameWins++;
+            result = "computer wins"; // Assign the result
+            console.log(result); // Log the result variable
         } else {
-            // Computer's deck is empty, player wins
-            console.log("player wins");
+            playerGameWins++;
+            result = "player wins"; // Assign the result
+            console.log(result); // Log the result variable
         }
+        updateGameResult(result); // Pass the result to updateGameResult
         playRound();
+
+        playerWins = 0;
+        computerWins = 0;
+
+        document.getElementById("game-win").innerHTML = `<span>Game Wins</span>  ${playerGameWins}`;
+        document.getElementById("game-lost").innerHTML = `<span>Game Losses</span>  ${computerGameWins}`;
     }
 }
+
 
 
 function playRound() {
