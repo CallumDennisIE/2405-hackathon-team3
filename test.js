@@ -3,7 +3,7 @@
  * Add an event listener to the document and run the main screen with user log-in
  */
 document.addEventListener('DOMContentLoaded', function () {
-    runMainScreen();
+  runMainScreen();
 });
 
 /**
@@ -22,12 +22,12 @@ let closeXBtn = document.getElementById("close-x-btn");
 * Show the main screen with user log-in and instruction icon
 */
 function runMainScreen() {
-    mainLoginScreen.style.display = "block";
-    errorMessage.style.display = "none";
-    mainGameScreen.style.display = "none";
-    document.getElementById("user-icon").style.display = "none";
-    document.getElementById("username").innerText = "";
-    document.getElementById("user").focus(); //focus on input element with cursor ready for username input
+  mainLoginScreen.style.display = "block";
+  errorMessage.style.display = "none";
+  mainGameScreen.style.display = "none";
+  document.getElementById("user-icon").style.display = "none";
+  document.getElementById("username").innerText = "";
+  document.getElementById("user").focus(); //focus on input element with cursor ready for username input
 }
 
 /**
@@ -36,18 +36,18 @@ function runMainScreen() {
 document.getElementById("user-log").addEventListener("click", checkUsername);
 
 function checkUsername() {
-    let username = document.getElementById("user").value.trim();
+  let username = document.getElementById("user").value.trim();
 
-    if (username.length >= 1 && username.length <= 12) {
-        mainGameScreen.style.display = "block";
-        mainLoginScreen.style.display = "none";
-        document.getElementById("user-icon").style.display = "block";
-        document.getElementById("username").innerText = username;
-    } else {
-        errorMessage.style.display = "block";
-        //document.getElementById("user").focus(); 
-        document.getElementById("user").value = "";
-    }
+  if (username.length >= 1 && username.length <= 12) {
+    mainGameScreen.style.display = "block";
+    mainLoginScreen.style.display = "none";
+    document.getElementById("user-icon").style.display = "block";
+    document.getElementById("username").innerText = username;
+  } else {
+    errorMessage.style.display = "block";
+    //document.getElementById("user").focus(); 
+    document.getElementById("user").value = "";
+  }
 }
 checkUsername();
 
@@ -58,24 +58,24 @@ checkUsername();
 getInstructions.addEventListener("click", showInstructions);
 
 function showInstructions() {
-    modal.classList.add("show-modal");
-    document.body.classList.add('greyout-background'); //grey out the background picture when modal pops-up.
+  modal.classList.add("show-modal");
+  document.body.classList.add('greyout-background'); //grey out the background picture when modal pops-up.
 }
 
 closeBtn.addEventListener("click", closeInstructions);
 closeXBtn.addEventListener("click", closeInstructions);
 
 function closeInstructions() {
-    modal.classList.remove("show-modal");
-    document.body.classList.remove('greyout-background');
+  modal.classList.remove("show-modal");
+  document.body.classList.remove('greyout-background');
 }
 
 document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-        if (modal.classList.contains("show-modal")) {
-            closeInstructions();
-        }
+  if (event.key === "Escape") {
+    if (modal.classList.contains("show-modal")) {
+      closeInstructions();
     }
+  }
 });
 
 
@@ -84,20 +84,20 @@ document.addEventListener("keydown", function (event) {
  * Allow users to input their username by pressing the enter key
  */
 document.getElementById("user").addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        checkUsername();
-    }
+  if (event.key === "Enter") {
+    checkUsername();
+  }
 });
 
 // Define the cards
 class Card {
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
-    // Using the constructor method is faster than making each instance for each character 
-    constructor(name, attack, defense, force, side, imageName) {
-        // Set the card's properties with object = cards - assign with "this" method
-        Object.assign(this, { name, attack, defense, force, side, imageName, rarity: 'common' });
-    }
-    upgrade() { this.rarity = 'rare'; }
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+  // Using the constructor method is faster than making each instance for each character 
+  constructor(name, attack, defense, force, side, imageName) {
+    // Set the card's properties with object = cards - assign with "this" method
+    Object.assign(this, { name, attack, defense, force, side, imageName, rarity: 'common' });
+  }
+  upgrade() { this.rarity = 'rare'; }
 }
 
 const getRandomCommonValue = () => getRandomNumber(10, 100); // Common value
@@ -106,126 +106,126 @@ const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)
 
 // Shuffle decks - needs minor change so only the correct side/deck is shuffled
 function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 // Shuffle decks - now shuffles the correct side/deck only
 function shuffleDeck(deck, side) {
-    const sideDeck = deck.filter(card => card.side === side); // Filter cards based on the side
-    const shuffledSideDeck = shuffleArray(sideDeck);
+  const sideDeck = deck.filter(card => card.side === side); // Filter cards based on the side
+  const shuffledSideDeck = shuffleArray(sideDeck);
 
 
 
-    // Merge the shuffled deck back without mixing sides
-    let index = 0;
-    deck.forEach((card, i) => {
-        if (card.side === side) {
-            deck[i] = shuffledSideDeck[index++];
-        }
-    });
+  // Merge the shuffled deck back without mixing sides
+  let index = 0;
+  deck.forEach((card, i) => {
+    if (card.side === side) {
+      deck[i] = shuffledSideDeck[index++];
+    }
+  });
 }
 
 // Shuffle both Light and Dark side decks separately
 function shuffleDecks(deck) {
-    shuffleDeck(deck, 'Light');
-    shuffleDeck(deck, 'Dark');
+  shuffleDeck(deck, 'Light');
+  shuffleDeck(deck, 'Dark');
 }
 
 function initCards() {
-    shuffleDecks(characters);
-    let deck = [];
-    characters.forEach(character => {
-        deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
-    });
+  shuffleDecks(characters);
+  let deck = [];
+  characters.forEach(character => {
+    deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
+  });
 
 
 }
 
 const characters = [
-    { name: 'Luke Skywalker', attack: 80, defense: 70, force: 70, side: "Light", imageName: "card_basic_front_luke.png" },
-    { name: 'Han Solo', attack: 60, defense: 40, force: 10, side: "Light", imageName: "card_basic_front_han.png" },
-    { name: 'Leia Organa', attack: 50, defense: 30, force: 50, side: "Light", imageName: "card_basic_front_leia.png" },
-    { name: 'Chewbacca', attack: 80, defense: 50, force: 10, side: "Light", imageName: "card_basic_front_chew.png" },
-    { name: 'Boba Fett', attack: 70, defense: 70, force: 0, side: "Dark", imageName: "card_basic_front_boba.png" },
-    { name: 'Darth Vader', attack: 100, defense: 80, force: 90, side: "Dark", imageName: "card_basic_front_vader.png" },
-    { name: 'Obi-Wan Kenobi', attack: 80, defense: 100, force: 80, side: "Light", imageName: "card_basic_front_obi.png" },
-    { name: 'Yoda', attack: 80, defense: 90, force: 100, side: "Light", imageName: "card_basic_front_yoda.png" },
-    { name: 'Rey', attack: 70, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_rey.png" },
-    { name: 'Grogu', attack: 50, defense: 30, force: 100, side: "Light", imageName: "card_basic_front_grogu.png" },
-    { name: 'R2-D2', attack: 50, defense: 50, force: 0, side: "Light", imageName: "card_basic_front_r2d2.png" },
-    { name: 'C-3PO', attack: 10, defense: 10, force: 0, side: "Light", imageName: "card_basic_front_c3po.png" },
-    { name: 'Anakin Skywalker', attack: 90, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_anakin.png" },
-    { name: 'Darth Sidious', attack: 70, defense: 70, force: 100, side: "Dark", imageName: "card_basic_front_sidious.png" },
-    { name: 'Jar Jar Binks', attack: 0, defense: 0, force: 0, side: "Light", imageName: "card_basic_front_binks.png" },
-    { name: 'Grand Moff Tarkin', attack: 70, defense: 30, force: 0, side: "Dark", imageName: "card_basic_front_tarkin.png" },
-    { name: 'Mace Windu', attack: 80, defense: 70, force: 90, side: "Light", imageName: "card_basic_front_windu.png" },
-    { name: 'Darth Maul', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_maul.png" },
-    { name: 'Qui-Gon Jinn', attack: 70, defense: 70, force: 80, side: "Light", imageName: "card_basic_front_quigon.png" },
-    { name: 'Padme Amidala', attack: 40, defense: 30, force: 10, side: "Light", imageName: "card_basic_front_padme.png" },
-    { name: 'General Grievous', attack: 70, defense: 80, force: 0, side: "Dark", imageName: "card_basic_front_grevious.png" },
-    { name: 'Kylo Ren', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_kylo.png" },
-    { name: 'Finn', attack: 60, defense: 50, force: 30, side: "Light", imageName: "card_basic_front_finn.png" },
-    { name: 'Poe Dameron', attack: 50, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_poe.png" },
-    { name: 'Supreme Leader Snoke', attack: 60, defense: 50, force: 90, side: "Dark", imageName: "card_basic_front_snoke.png" },
-    { name: 'General Hux', attack: 50, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_hux.png" },
-    { name: 'Maz Kanata', attack: 50, defense: 30, force: 40, side: "Light", imageName: "card_basic_front_kanata.png" },
-    { name: 'Captain Phasma', attack: 70, defense: 60, force: 40, side: "Dark", imageName: "card_basic_front_phasma.png" },
-    { name: 'Chief Chirpa', attack: 30, defense: 30, force: 0, side: "Light", imageName: "card_basic_front_chirpa.png" },
-    { name: 'Count Dooku', attack: 70, defense: 60, force: 60, side: "Dark", imageName: "card_basic_front_dooku.png" },
-    { name: 'Lando Calrissian', attack: 80, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_lando.png" },
-    { name: 'Nien Nunb', attack: 70, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_nunb.png" },
-    { name: 'Jabba The Hutt', attack: 30, defense: 10, force: 0, side: "Dark", imageName: "card_basic_front_jabba.png" },
-    { name: 'BB-8', attack: 30, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_bb8.png" },
-    { name: 'Admiral Ackbar', attack: 70, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_ackbar.png" },
-    { name: 'Jocasta Nu', attack: 0, defense: 10, force: 70, side: "Light", imageName: "card_basic_front_nu.png" }
+  { name: 'Luke Skywalker', attack: 80, defense: 70, force: 70, side: "Light", imageName: "card_basic_front_luke.png" },
+  { name: 'Han Solo', attack: 60, defense: 40, force: 10, side: "Light", imageName: "card_basic_front_han.png" },
+  { name: 'Leia Organa', attack: 50, defense: 30, force: 50, side: "Light", imageName: "card_basic_front_leia.png" },
+  { name: 'Chewbacca', attack: 80, defense: 50, force: 10, side: "Light", imageName: "card_basic_front_chew.png" },
+  { name: 'Boba Fett', attack: 70, defense: 70, force: 0, side: "Dark", imageName: "card_basic_front_boba.png" },
+  { name: 'Darth Vader', attack: 100, defense: 80, force: 90, side: "Dark", imageName: "card_basic_front_vader.png" },
+  { name: 'Obi-Wan Kenobi', attack: 80, defense: 100, force: 80, side: "Light", imageName: "card_basic_front_obi.png" },
+  { name: 'Yoda', attack: 80, defense: 90, force: 100, side: "Light", imageName: "card_basic_front_yoda.png" },
+  { name: 'Rey', attack: 70, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_rey.png" },
+  { name: 'Grogu', attack: 50, defense: 30, force: 100, side: "Light", imageName: "card_basic_front_grogu.png" },
+  { name: 'R2-D2', attack: 50, defense: 50, force: 0, side: "Light", imageName: "card_basic_front_r2d2.png" },
+  { name: 'C-3PO', attack: 10, defense: 10, force: 0, side: "Light", imageName: "card_basic_front_c3po.png" },
+  { name: 'Anakin Skywalker', attack: 90, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_anakin.png" },
+  { name: 'Darth Sidious', attack: 70, defense: 70, force: 100, side: "Dark", imageName: "card_basic_front_sidious.png" },
+  { name: 'Jar Jar Binks', attack: 0, defense: 0, force: 0, side: "Light", imageName: "card_basic_front_binks.png" },
+  { name: 'Grand Moff Tarkin', attack: 70, defense: 30, force: 0, side: "Dark", imageName: "card_basic_front_tarkin.png" },
+  { name: 'Mace Windu', attack: 80, defense: 70, force: 90, side: "Light", imageName: "card_basic_front_windu.png" },
+  { name: 'Darth Maul', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_maul.png" },
+  { name: 'Qui-Gon Jinn', attack: 70, defense: 70, force: 80, side: "Light", imageName: "card_basic_front_quigon.png" },
+  { name: 'Padme Amidala', attack: 40, defense: 30, force: 10, side: "Light", imageName: "card_basic_front_padme.png" },
+  { name: 'General Grievous', attack: 70, defense: 80, force: 0, side: "Dark", imageName: "card_basic_front_grevious.png" },
+  { name: 'Kylo Ren', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_kylo.png" },
+  { name: 'Finn', attack: 60, defense: 50, force: 30, side: "Light", imageName: "card_basic_front_finn.png" },
+  { name: 'Poe Dameron', attack: 50, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_poe.png" },
+  { name: 'Supreme Leader Snoke', attack: 60, defense: 50, force: 90, side: "Dark", imageName: "card_basic_front_snoke.png" },
+  { name: 'General Hux', attack: 50, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_hux.png" },
+  { name: 'Maz Kanata', attack: 50, defense: 30, force: 40, side: "Light", imageName: "card_basic_front_kanata.png" },
+  { name: 'Captain Phasma', attack: 70, defense: 60, force: 40, side: "Dark", imageName: "card_basic_front_phasma.png" },
+  { name: 'Chief Chirpa', attack: 30, defense: 30, force: 0, side: "Light", imageName: "card_basic_front_chirpa.png" },
+  { name: 'Count Dooku', attack: 70, defense: 60, force: 60, side: "Dark", imageName: "card_basic_front_dooku.png" },
+  { name: 'Lando Calrissian', attack: 80, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_lando.png" },
+  { name: 'Nien Nunb', attack: 70, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_nunb.png" },
+  { name: 'Jabba The Hutt', attack: 30, defense: 10, force: 0, side: "Dark", imageName: "card_basic_front_jabba.png" },
+  { name: 'BB-8', attack: 30, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_bb8.png" },
+  { name: 'Admiral Ackbar', attack: 70, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_ackbar.png" },
+  { name: 'Jocasta Nu', attack: 0, defense: 10, force: 70, side: "Light", imageName: "card_basic_front_nu.png" }
 
 ];
 
 
 
 function initCards() {
-    shuffleDecks(characters);
-    let deck = [];
-    characters.forEach(character => {
-        // const attack = getRandomCommonValue(); // Common value
-        // const defense = getRandomCommonValue();
-        // const force = getRandomCommonValue();
-        // const side = character.includes('Darth') || character.includes('Emperor') ? 'Dark' : 'Light';
+  shuffleDecks(characters);
+  let deck = [];
+  characters.forEach(character => {
+    // const attack = getRandomCommonValue(); // Common value
+    // const defense = getRandomCommonValue();
+    // const force = getRandomCommonValue();
+    // const side = character.includes('Darth') || character.includes('Emperor') ? 'Dark' : 'Light';
 
-        // Create the image for the character based on the side
-        // const imageName = `${character.toLowerCase().replace(/\s+/g, '_')}_${side.toLowerCase()}.png`;
+    // Create the image for the character based on the side
+    // const imageName = `${character.toLowerCase().replace(/\s+/g, '_')}_${side.toLowerCase()}.png`;
 
-        // Create a new card for the character with these attributes - img and push it to the deck
-        deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
-    });
+    // Create a new card for the character with these attributes - img and push it to the deck
+    deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
+  });
 
-    shuffleDeck(deck);
+  shuffleDeck(deck);
 
-    // Split decks - player / computer based on the side 
-    let playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
-    let computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
+  // Split decks - player / computer based on the side 
+  let playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
+  let computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
 
-    renderDeckToScreen(playerDeck, 'player-cards');
-    renderDeckToScreen(computerDeck, 'computer-cards');
+  renderDeckToScreen(playerDeck, 'player-cards');
+  renderDeckToScreen(computerDeck, 'computer-cards');
 
-    console.log("Player Deck");
-    console.table(playerDeck);
-    console.log("Computer Deck");
-    console.table(computerDeck);
+  console.log("Player Deck");
+  console.table(playerDeck);
+  console.log("Computer Deck");
+  console.table(computerDeck);
 }
 
 function renderDeckToScreen(deck, containerId) {
-    console.log("rendering deck to screen");
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-    deck.forEach(function(card) {
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card');
-        cardElement.innerHTML = `
+  console.log("rendering deck to screen");
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  deck.forEach(function (card) {
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('card');
+    cardElement.innerHTML = `
             <div id="player-card" class="card"
                 data-name="${card.name}"
                 data-attack="${card.attack}"
@@ -245,21 +245,83 @@ function renderDeckToScreen(deck, containerId) {
                 </div>
             </div>
         `;
-        container.appendChild(cardElement);
-    });
+    container.appendChild(cardElement);
+  });
+}
+
+// ---------------- 
+
+
+// ----------------- DO select attribute values for each card 
+
+
+// Function to display the selected attribute
+function displayAttribute(attribute) {
+  console.log(`Attribute ${attribute} selected`);
+  const playerCard = document.querySelector("#player-cards .card:last-child");
+  const computerCard = document.querySelector("#computer-cards .card:last-child");
+
+  if (playerCard) {
+    let playerValue = playerCard.dataset[attribute];
+    console.log(`${attribute} playerValue:`, playerValue);
+  }
+  if (computerCard) {
+    let computerValue = computerCard.dataset[attribute];
+    console.log(`${attribute} computerValue:`, computerValue);
+  }
 }
 
 
+
+function displayAttributeButtons() {
+  const buttonsContainer = document.querySelector('.buttons');
+  const attributes = ['attack', 'defense', 'force'];
+
+  attributes.forEach(attribute => {
+    const button = document.querySelector(`.button[data-attribute="${attribute}"]`);
+    button.addEventListener('click', () => {
+      displayAttribute(attribute);
+    });
+  });
+}
+
+
+
+// send attrs. to compare player / computer
+
+
+function selectCardAttribute() {
+  // flip card Over on click
+  const cards = document.querySelectorAll('.flip-card');
+  cards.forEach(card => {
+    card.addEventListener('click', function () {
+      this.classList.toggle('flipped');
+      // displayAttribute(this);
+    });
+  });
+
+  displayAttributeButtons();
+}
+
+selectCardAttribute();
+
+
+
 function playRound() {
-    initCards();
+  initCards();
 }
 
 
 document.getElementById("next-round").addEventListener("click", playRound);
 
 
+// ------------------------------------------------------------------------ 
+
+//     const compareCards = (playerCard, computerCard, attribute) => playerCard[attribute] > computerCard[attribute] ? 'A' : playerCard[attribute] < computerCard[attribute] ? 'B' : 'Tie';
 
 
+// function selectCardAttribute() {}
+// function compareCards() {}
 
 // document.addEventListener("DOMContentLoaded", function () {
 //     const countdownElement = document.getElementById('countdown');
@@ -358,7 +420,6 @@ document.getElementById("next-round").addEventListener("click", playRound);
 //         console.log(`Computer's deck size: ${computerDeck.length}`);
 //     };
 
-//     const compareCards = (playerCard, computerCard, attribute) => playerCard[attribute] > computerCard[attribute] ? 'A' : playerCard[attribute] < computerCard[attribute] ? 'B' : 'Tie';
 
 //     const playComputerTurn = () => {
 //         // Check if both player and computer decks are not empty
