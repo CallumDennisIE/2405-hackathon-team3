@@ -384,6 +384,22 @@ button:hover {
     content: attr(data-hover-text);
 }
 
+/* 404-Page */
+
+/* Choose IMG or GIF for background */
+
+.wrapper-404 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url("../images/background/404-c3po-lost-gif.gif") no-repeat center center fixed;
+/*     background: url("../images/background/404-c3po-lost.png") no-repeat center center fixed; */
+}
+
 
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
