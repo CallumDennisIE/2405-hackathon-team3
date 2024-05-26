@@ -3,7 +3,7 @@
 
 Lightsaber Legends is an electrifying online version of Top Trumps that immerses Star Wars fans in the epic galaxy far, far away! This thrilling game lets you pit iconic characters like Luke Skywalker, Darth Vader, and Rey against each other, comparing their unique attributes and abilities. Each duel is a chance to showcase your strategic skills and Star Wars knowledge, making every victory even sweeter. Whether you're a Jedi Master or a Sith Lord, Lightsaber Legends offers an engaging, force-filled experience that no Star Wars aficionado can resist!
 
-Visit the deployed website [here]().
+Visit the deployed website [here](https://callumdennisie.github.io/2405-hackathon-team3/).
 
 ## Table of contents
 1. [User Experience (UX)](#user-experience-ux)
@@ -11,7 +11,6 @@ Visit the deployed website [here]().
     2. [User Stories](#user-stories)
     3. [Color Scheme](#color-scheme)
     4. [Typography](#typography)
-    5. [Wireframes](#wireframes)
 2. [Features](#features)
     1. [General](#general)
     2. [Game Area](#game-area)
@@ -55,7 +54,7 @@ Visit the deployed website [here]().
 To be added
 
 ### Typography
-![Type Font Image](assets/readme-files/font.png)
+![Type Font Image](assets/readme-files/fonts.png)
 
 The following fonts from [Google Fonts](https://fonts.google.com/) were used on this website:
 
@@ -64,13 +63,6 @@ The following fonts from [Google Fonts](https://fonts.google.com/) were used on 
 
 The fallback font, in case either font isn't loaded correctly, is Sans Serif.
 
-### Wireframes
-
-Page | Desktop Version | Mobile Version
---- | --- | ---
-Home | ![Wireframe Home Desktop Image](assets/wireframes/wf-home-desktop.png) | ![Wireframe Home Mobile Image](assets/wireframes/wf-home-mobile.png)
-404 | ![Wireframe 404 Desktop Image](assets/wireframes/wf-404-desktop.png) | ![Wireframe 404 Mobile Image](assets/wireframes/wf-404-mobile.png)
-
 [Back to top ⇧](#lightsaber-legends)
 
 ## Features
@@ -78,28 +70,22 @@ Home | ![Wireframe Home Desktop Image](assets/wireframes/wf-home-desktop.png) | 
 - The site was built using a mobile-first approach. 
 - Media queries were used to adapt features for larger screens to ensure responsive designs across different screen sizes. 
 
-**Header**
-![Header Image](assets/readme-files/header.png)
-
-**Footer**
-![Footer Image](assets/readme-files/footer.png)
-
 ### Game Area
 **Board**
 ![Board Image](assets/readme-files/board.png)
 
 **Game Over Announcement**
-![Game Over Image](assets/readme-files/game-over.png)
+![Game Over Gif](assets/readme-files/game-over-gif.gif)
 
-**Win / Draw Announcement**
-![Win Board Image](assets/readme-files/board-win.png)
+**Victory Announcement**
+![Victory  Gif](assets/readme-files/victory-gif.gif)
 
 ### Popups
 **Instructions Popup**
-![Instructions Image](assets/readme-files/popup-instructions.png)
+![Instructions Image](assets/readme-files/instructions-popup.png)
 
 ### 404 Page
-![404 Page](assets/readme-files/404-desktop.png)
+![404 Page](assets/readme-files/404-page-gif.gif)
 - This page is displayed in case of broken or misspelled links and contains a link back to the main page.
 
 [Back to top ⇧](#lightsaber-legends)
@@ -120,6 +106,8 @@ Home | ![Wireframe Home Desktop Image](assets/wireframes/wf-home-desktop.png) | 
 - [Microsoft Copilot](https://copilot.microsoft.com/) was used to help generate the About section on the game cards.
 
 - [JPG to PNG](https://jpg2png.com/) was used to convert all images to PNG format.
+
+- [Veed.io](https://www.veed.io/) was used to convert a screen recording into a gif.
 
 - [Balsamiq](https://balsamiq.com/) was used to create the wireframes during the design phase of the project.
 
@@ -169,7 +157,11 @@ As a user, I want to be able to play the game on different devices.
 [W3C Markup Validator](https://validator.w3.org/), [W3C CSS Validator](https://jigsaw.w3.org/css-validator/), and [JSHint](https://jshint.com/) were used to validate the project to ensure there were no errors in the code.
 
 **HTML Validation**
- ![HTML Validation Image](assets/readme-files/html-validation.png)
+- Home Page
+ ![HTML Validation Home Image](assets/readme-files/html-validation-home.png)
+
+ - 404 Page
+ ![HTML Validation 404 Image](assets/readme-files/html-validation-404.png)
 
 **CSS Validation**
  ![CSS Validation Image](assets/readme-files/css-validation.png)
@@ -259,12 +251,14 @@ The sounds used on the website were downloaded from [Pixabay](https://pixabay.co
 
 The background images were created using [Getimg.ai](https://getimg.ai/).
 
+The gifs for the Game Over Screen, the Victory Screen, and the 404-Page were dpwnloaded from [Gifs.com](https://gifs.com/).
+
 The cards were created using [Canva](https://www.canva.com/).
 - The images were downloaded from [Star Wars Database](https://www.starwars.com/) and [Wookiepedia](https://starwars.fandom.com/wiki/Main_Page)
 - The About section was written with the help of [Microsoft Copilot](https://copilot.microsoft.com/).
 
 ### Code
-[Stack Overflow](https://stackoverflow.com/) and [W3Schools](https://www.w3schools.com/) were consulted on a regular basis for troubleshooting and inspiration.
+[Stack Overflow](https://stackoverflow.com/), [CSS Tricks](https://css-tricks.com/), and [W3Schools](https://www.w3schools.com/) were consulted on a regular basis for troubleshooting and inspiration.
 
 [Back to top ⇧](#lightsaber-legends)
 
