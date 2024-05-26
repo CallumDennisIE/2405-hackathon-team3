@@ -91,6 +91,8 @@ document.getElementById("user").addEventListener("keydown", function (event) {
 
 // Define the cards
 class Card {
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+    // Using the constructor method is faster than making each instance for each character 
     constructor(name, attack, defense, force, side, imageName) {
         // Set the card's properties with object = cards - assign with "this" method
         Object.assign(this, { name, attack, defense, force, side, imageName, rarity: 'common' });
@@ -102,13 +104,45 @@ const getRandomCommonValue = () => getRandomNumber(10, 100); // Common value
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min; // Pick random stats for each rarity (within the min-max values)
 
 
-
 // Shuffle decks - needs minor change so only the correct side/deck is shuffled
-function shuffleDeck(array) {
+function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1)); // Pick a random index
-        [array[i], array[j]] = [array[j], array[i]]; // Swap cards(elements) at i and j
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
+    return array;
+}
+
+// Shuffle decks - now shuffles the correct side/deck only
+function shuffleDeck(deck, side) {
+    const sideDeck = deck.filter(card => card.side === side); // Filter cards based on the side
+    const shuffledSideDeck = shuffleArray(sideDeck);
+
+
+
+    // Merge the shuffled deck back without mixing sides
+    let index = 0;
+    deck.forEach((card, i) => {
+        if (card.side === side) {
+            deck[i] = shuffledSideDeck[index++];
+        }
+    });
+}
+
+// Shuffle both Light and Dark side decks separately
+function shuffleDecks(deck) {
+    shuffleDeck(deck, 'Light');
+    shuffleDeck(deck, 'Dark');
+}
+
+function initCards() {
+    shuffleDecks(characters);
+    let deck = [];
+    characters.forEach(character => {
+        deck.push(new Card(character.name, character.attack, character.defense, character.force, character.side, character.imageName));
+    });
+
+
 }
 
 const characters = [
@@ -151,7 +185,10 @@ const characters = [
 
 ];
 
+
+
 function initCards() {
+    shuffleDecks(characters);
     let deck = [];
     characters.forEach(character => {
         // const attack = getRandomCommonValue(); // Common value
@@ -168,9 +205,9 @@ function initCards() {
 
     shuffleDeck(deck);
 
-    // Split decks - player 1 to 5 / computer 6 to 10
-    let playerDeck = deck.slice(0, 5);
-    let computerDeck = deck.slice(5, 10);
+    // Split decks - player / computer based on the side 
+    let playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
+    let computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
 
     console.log("Player Deck");
     console.table(playerDeck);
@@ -247,20 +284,6 @@ document.getElementById("next-round").addEventListener("click", playRound);
 //     //     // Resume countdown if user clicks inside the game container, else pause it
 //     //     gameContainer.contains(event.target) ? resumeCountdown() : pauseCountdown();
 //     // });
-
-
-
-//     // Fisher-Yates shuffle algorithm 
-//     const shuffleDeck = (array) => {
-//         for (let i = array.length - 1; i > 0; i--) {
-//             const j = Math.floor(Math.random() * (i + 1)); // Pick a random index
-//             [array[i], array[j]] = [array[j], array[i]]; // Swap cards(elements) at i and j
-//         }
-//     };
-
-
-//     // Store the cards
-//     
 
 
 
