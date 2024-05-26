@@ -272,15 +272,22 @@ function displayAttribute(attribute) {
 
 
 function displayAttributeButtons() {
-  const buttonsContainer = document.querySelector('.buttons');
-  const attributes = ['attack', 'defense', 'force'];
-
-  attributes.forEach(attribute => {
-    const button = document.querySelector(`.button[data-attribute="${attribute}"]`);
-    button.addEventListener('click', () => {
-      displayAttribute(attribute);
+    const buttonsContainer = document.querySelector('.buttons');
+    const attributes = ['attack', 'defense', 'force'];
+    
+  //   attributes.forEach(attribute => {
+  //     const button = document.querySelector(`.button[data-attribute="${attribute}"]`);
+  //   });
+  
+    // Add event listener outside the loop
+    buttonsContainer.addEventListener('click', function(event) {
+      const button = event.target.closest('.button');
+      const attribute = button.dataset.attribute;
+      button.addEventListener('click', () => {
+          event.stopPropagation();
+          displayAttribute(attribute);
+      });
     });
-  });
 }
 
 
