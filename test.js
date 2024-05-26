@@ -57,6 +57,12 @@ checkUsername();
  */
 getInstructions.addEventListener("click", showInstructions);
 
+
+
+
+let playerDeck;
+let computerDeck;
+
 function showInstructions() {
   modal.classList.add("show-modal");
   document.body.classList.add('greyout-background'); //grey out the background picture when modal pops-up.
@@ -205,8 +211,8 @@ function initCards() {
   shuffleDeck(deck);
 
   // Split decks - player / computer based on the side 
-  let playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
-  let computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
+  playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
+  computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
 
   renderDeckToScreen(playerDeck, 'player-cards');
   renderDeckToScreen(computerDeck, 'computer-cards');
@@ -274,10 +280,15 @@ function displayAttribute(attribute) {
     let result = compareCards(playerValue, computerValue);
     console.log(result);
 
+    const playerCardIndex = playerDeck.length - 1;
+    const computerCardIndex = computerDeck.length - 1;
+
     if (result === 'A') {
         // Player wins
         // console.log(`${userSide === 'light' ? 'The Force is strong' : 'The Dark side prevails'} with ${playerCard.name}! ${userSide === 'light' ? 'Light' : 'Dark'} Side wins the round with ${attribute}.`);
-        // playerDeck.push(playerCard, computerCard);
+        playerDeck.push(playerDeck[playerCardIndex], computerDeck[computerCardIndex]);
+        playerDeck.splice(playerCardIndex, 1);
+        computerDeck.splice(computerCardIndex, 1);
         // userCredits += creditsPerRoundWin;
         // updateCreditsDisplay();
         // updateMessageDisplay(`Awesome work, here is ${creditsPerRoundWin} credits!`);
@@ -286,16 +297,22 @@ function displayAttribute(attribute) {
     } else if (result === 'B') {
         // Computer wins
         // console.log(`${userSide === 'light' ? 'The Dark side prevails' : 'The Force is strong'} with ${computerCard.name}! ${userSide === 'light' ? 'Dark' : 'Light'} Side wins the round with ${attribute}.`);
-        console.log(`You lose ya loser`);
-        // computerDeck.push(playerCard, computerCard);
+        computerDeck.push(playerDeck[playerCardIndex], computerDeck[computerCardIndex]);
+        playerDeck.splice(playerCardIndex, 1);
+        computerDeck.splice(computerCardIndex, 1);
     } else {
         // None wins
         console.log("It's a tie! Both cards are discarded into the Sarlacc pit.");
+        playerDeck.splice(playerCardIndex, 1);
+        computerDeck.splice(computerCardIndex, 1);
     }
 
+    renderDeckToScreen(playerDeck, 'player-cards');
+    renderDeckToScreen(computerDeck, 'computer-cards');
+
     // Display the updated decks
-    // console.log(`Player's deck size: ${playerDeck.length}`);
-    // console.log(`Computer's deck size: ${computerDeck.length}`);
+    console.log(`Player's deck size: ${playerDeck.length}`);
+    console.log(`Computer's deck size: ${computerDeck.length}`);
   }
 
 }
