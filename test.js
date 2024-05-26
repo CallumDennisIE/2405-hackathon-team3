@@ -225,14 +225,13 @@ function renderDeckToScreen(deck, containerId) {
   deck.forEach(function (card) {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card');
+    cardElement.id = 'player-card'
+    cardElement.setAttribute('data-name', `${card.name}`)
+    cardElement.setAttribute('data-attack', `${card.attack}`)
+    cardElement.setAttribute('data-defense', `${card.defense}`)
+    cardElement.setAttribute('data-force', `${card.force}`)
+    cardElement.setAttribute('data-side', `${card.side}`)
     cardElement.innerHTML = `
-            <div id="player-card" class="card"
-                data-name="${card.name}"
-                data-attack="${card.attack}"
-                data-defense="${card.defense}"
-                data-force="${card.force}"
-                data-side="${card.side}"
-                >
                 <div class="flip-card" tabIndex="0">
                     <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -243,7 +242,6 @@ function renderDeckToScreen(deck, containerId) {
                     </div>
                     </div>
                 </div>
-            </div>
         `;
     container.appendChild(cardElement);
   });
