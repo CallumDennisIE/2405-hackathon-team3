@@ -4,6 +4,7 @@
  */
 document.addEventListener('DOMContentLoaded', function () {
   runMainScreen();
+  checkGameEnd();
 });
 
 /**
@@ -56,6 +57,12 @@ checkUsername();
  * Show and close modal with game instructions
  */
 getInstructions.addEventListener("click", showInstructions);
+
+
+
+
+let playerDeck;
+let computerDeck;
 
 function showInstructions() {
   modal.classList.add("show-modal");
@@ -151,15 +158,15 @@ const characters = [
   { name: 'Leia Organa', attack: 50, defense: 30, force: 50, side: "Light", imageName: "card_basic_front_leia.png" },
   { name: 'Chewbacca', attack: 80, defense: 50, force: 10, side: "Light", imageName: "card_basic_front_chew.png" },
   { name: 'Boba Fett', attack: 70, defense: 70, force: 0, side: "Dark", imageName: "card_basic_front_boba.png" },
-  { name: 'Darth Vader', attack: 100, defense: 80, force: 90, side: "Dark", imageName: "card_basic_front_vader.png" },
-  { name: 'Obi-Wan Kenobi', attack: 80, defense: 100, force: 80, side: "Light", imageName: "card_basic_front_obi.png" },
-  { name: 'Yoda', attack: 80, defense: 90, force: 100, side: "Light", imageName: "card_basic_front_yoda.png" },
+  { name: 'Darth Vader', attack: 99, defense: 80, force: 90, side: "Dark", imageName: "card_basic_front_vader.png" },
+  { name: 'Obi-Wan Kenobi', attack: 80, defense: 99, force: 80, side: "Light", imageName: "card_basic_front_obi.png" },
+  { name: 'Yoda', attack: 80, defense: 90, force: 99, side: "Light", imageName: "card_basic_front_yoda.png" },
   { name: 'Rey', attack: 70, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_rey.png" },
-  { name: 'Grogu', attack: 50, defense: 30, force: 100, side: "Light", imageName: "card_basic_front_grogu.png" },
+  { name: 'Grogu', attack: 50, defense: 30, force: 99, side: "Light", imageName: "card_basic_front_grogu.png" },
   { name: 'R2-D2', attack: 50, defense: 50, force: 0, side: "Light", imageName: "card_basic_front_r2d2.png" },
   { name: 'C-3PO', attack: 10, defense: 10, force: 0, side: "Light", imageName: "card_basic_front_c3po.png" },
   { name: 'Anakin Skywalker', attack: 90, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_anakin.png" },
-  { name: 'Darth Sidious', attack: 70, defense: 70, force: 100, side: "Dark", imageName: "card_basic_front_sidious.png" },
+  { name: 'Darth Sidious', attack: 70, defense: 70, force: 99, side: "Dark", imageName: "card_basic_front_sidious.png" },
   { name: 'Jar Jar Binks', attack: 0, defense: 0, force: 0, side: "Light", imageName: "card_basic_front_binks.png" },
   { name: 'Grand Moff Tarkin', attack: 70, defense: 30, force: 0, side: "Dark", imageName: "card_basic_front_tarkin.png" },
   { name: 'Mace Windu', attack: 80, defense: 70, force: 90, side: "Light", imageName: "card_basic_front_windu.png" },
@@ -183,9 +190,8 @@ const characters = [
   { name: 'Admiral Ackbar', attack: 70, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_ackbar.png" },
   { name: 'Jocasta Nu', attack: 0, defense: 10, force: 70, side: "Light", imageName: "card_basic_front_nu.png" }
 
+
 ];
-
-
 
 function initCards() {
   shuffleDecks(characters);
@@ -206,8 +212,8 @@ function initCards() {
   shuffleDeck(deck);
 
   // Split decks - player / computer based on the side 
-  let playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
-  let computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
+  playerDeck = deck.filter(card => card.side === 'Light').slice(0, 5);
+  computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
 
   renderDeckToScreen(playerDeck, 'player-cards');
   renderDeckToScreen(computerDeck, 'computer-cards');
@@ -258,36 +264,77 @@ function displayAttribute(attribute) {
   console.log(`Attribute ${attribute} selected`);
   const playerCard = document.querySelector("#player-cards .card:last-child");
   const computerCard = document.querySelector("#computer-cards .card:last-child");
+  let playerValue;
+  let computerValue;
 
   if (playerCard) {
-    let playerValue = playerCard.dataset[attribute];
+    playerValue = playerCard.dataset[attribute];
     console.log(`${attribute} playerValue:`, playerValue);
   }
   if (computerCard) {
-    let computerValue = computerCard.dataset[attribute];
+    computerValue = computerCard.dataset[attribute];
     console.log(`${attribute} computerValue:`, computerValue);
   }
+
+  if (playerCard && computerCard) {
+    const compareCards = (playerValue, computerValue) => playerValue > computerValue ? 'A' : playerValue < computerValue ? 'B' : 'Tie';
+    let result = compareCards(playerValue, computerValue);
+    console.log(result);
+
+    const playerCardIndex = playerDeck.length - 1;
+    const computerCardIndex = computerDeck.length - 1;
+
+    if (result === 'A') {
+      // Player wins
+      // console.log(`${userSide === 'light' ? 'The Force is strong' : 'The Dark side prevails'} with ${playerCard.name}! ${userSide === 'light' ? 'Light' : 'Dark'} Side wins the round with ${attribute}.`);
+      playerDeck.push(playerDeck[playerCardIndex], computerDeck[computerCardIndex]);
+      playerDeck.splice(playerCardIndex, 1);
+      computerDeck.splice(computerCardIndex, 1);
+      // userCredits += creditsPerRoundWin;
+      // updateCreditsDisplay();
+      // updateMessageDisplay(`Awesome work, here is ${creditsPerRoundWin} credits!`);
+      // console.log(`Awesome work, here is ${creditsPerRoundWin} credits!`);
+      console.log(`Awesome work, here is some money credits!`);
+    } else if (result === 'B') {
+      // Computer wins
+      // console.log(`${userSide === 'light' ? 'The Dark side prevails' : 'The Force is strong'} with ${computerCard.name}! ${userSide === 'light' ? 'Dark' : 'Light'} Side wins the round with ${attribute}.`);
+      computerDeck.push(playerDeck[playerCardIndex], computerDeck[computerCardIndex]);
+      playerDeck.splice(playerCardIndex, 1);
+      computerDeck.splice(computerCardIndex, 1);
+    } else {
+      // None wins
+      console.log("It's a tie! Both cards are discarded into the Sarlacc pit.");
+      playerDeck.splice(playerCardIndex, 1);
+      computerDeck.splice(computerCardIndex, 1);
+    }
+    checkGameEnd();
+    renderDeckToScreen(playerDeck, 'player-cards');
+    renderDeckToScreen(computerDeck, 'computer-cards');
+
+    // Display the updated decks
+    console.log(`Player's deck size: ${playerDeck.length}`);
+    console.log(`Computer's deck size: ${computerDeck.length}`);
+  }
+
 }
 
-
-
 function displayAttributeButtons() {
-    const buttonsContainer = document.querySelector('.buttons');
-    const attributes = ['attack', 'defense', 'force'];
-    
+  const buttonsContainer = document.querySelector('.buttons');
+  const attributes = ['attack', 'defense', 'force'];
+
   //   attributes.forEach(attribute => {
   //     const button = document.querySelector(`.button[data-attribute="${attribute}"]`);
   //   });
-  
-    // Add event listener outside the loop
-    buttonsContainer.addEventListener('click', function(event) {
-      const button = event.target.closest('.button');
-      const attribute = button.dataset.attribute;
-      button.addEventListener('click', () => {
-          event.stopPropagation();
-          displayAttribute(attribute);
-      });
+
+  // Add event listener outside the loop
+  buttonsContainer.addEventListener('click', function (event) {
+    const button = event.target.closest('.button');
+    const attribute = button.dataset.attribute;
+    button.addEventListener('click', () => {
+      event.stopPropagation();
+      displayAttribute(attribute);
     });
+  });
 }
 
 
@@ -310,10 +357,28 @@ function selectCardAttribute() {
 
 selectCardAttribute();
 
+function checkGameEnd() {
+  if (playerDeck.length === 0 || computerDeck.length === 0) {
+    // Check if either player's or computer's deck is empty
+    // if (playerDeck.length === 0 && computerDeck.length === 0) {
+    //   // Both decks are empty, it's a tie
+    //   console.log("tie");
+    // } else 
+    if (playerDeck.length < 1) {
+      // Player's deck is empty, computer wins
+      console.log("computer wins");
+    } else {
+      // Computer's deck is empty, player wins
+      console.log("player wins");
+    }
+    playRound();
+  }
+}
 
 
 function playRound() {
   initCards();
+  checkGameEnd();
 }
 
 
