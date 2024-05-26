@@ -210,7 +210,7 @@ function initCards() {
     let computerDeck = deck.filter(card => card.side === 'Dark').slice(0, 5);
 
     renderDeckToScreen(playerDeck, 'player-cards');
-    renderDeckToScreen(computerDeck, 'computer-cards');
+    renderDeckToScreen(computerDeck, 'computer-card');
 
     console.log("Player Deck");
     console.table(playerDeck);
