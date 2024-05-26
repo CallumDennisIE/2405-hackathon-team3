@@ -78,8 +78,6 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-
-
 /**
  * Allow users to input their username by pressing the enter key
  */
@@ -100,8 +98,6 @@ class Card {
 
 const getRandomCommonValue = () => getRandomNumber(10, 100); // Common value
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min; // Pick random stats for each rarity (within the min-max values)
-
-
 
 // Shuffle decks - needs minor change so only the correct side/deck is shuffled
 function shuffleDeck(array) {
@@ -189,7 +185,13 @@ function renderDeckToScreen(deck, containerId) {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
         cardElement.innerHTML = `
-            <div id="player-card" class="card">
+            <div id="player-card" class="card"
+                data-name="${card.name}"
+                data-attack="${card.attack}"
+                data-defense="${card.defense}"
+                data-force="${card.force}"
+                data-side="${card.side}"
+                >
                 <div class="flip-card" tabIndex="0">
                     <div class="flip-card-inner">
                     <div class="flip-card-front">
@@ -209,7 +211,6 @@ function renderDeckToScreen(deck, containerId) {
 function playRound() {
     initCards();
 }
-
 
 document.getElementById("next-round").addEventListener("click", playRound);
 
