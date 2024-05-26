@@ -180,8 +180,8 @@ function initCards() {
     // Split decks - player / computer based on the side 
     var half_length = Math.ceil(deck.length / 2);
     
-    playerDeck = deck.slice(0, half_length);
-    computerDeck = deck.slice(half_length, deck.length);
+    playerDeck = deck.slice(0, 5);
+    computerDeck = deck.slice(6,10);
 
     renderDeckToScreen(playerDeck, 'player-cards');
     renderDeckToScreen(computerDeck, 'computer-cards');
@@ -241,6 +241,10 @@ function displayAttribute(attribute) {
     if (computerCard) {
         computerValue = computerCard.dataset[attribute];
         console.log(`${attribute} computerValue:`, computerValue);
+        const flipCard = document.querySelector("#computer-cards .card:last-child .flip-card");
+        if (flipCard) {
+          flipCard.classList.add("flipped");
+        }
     }
 
     if (playerCard && computerCard) {
@@ -282,12 +286,20 @@ function displayAttribute(attribute) {
         document.getElementById("player-wins").innerText = playerWins;
         document.getElementById("computer-wins").innerText = computerWins;
 
-        checkGameEnd();
-        renderDeckToScreen(playerDeck, 'player-cards');
-        renderDeckToScreen(computerDeck, 'computer-cards');
-
-        console.log(`Player's deck size: ${playerDeck.length}`);
-        console.log(`Computer's deck size: ${computerDeck.length}`);
+        setTimeout(() => {
+          checkGameEnd();
+          renderDeckToScreen(playerDeck, 'player-cards');
+          renderDeckToScreen(computerDeck, 'computer-cards');
+  
+          document.getElementById("play-card").style.display = "block";
+          const attrButtons = document.getElementsByClassName("attr-button");
+          for (let i = 0; i < attrButtons.length; i++) {
+            attrButtons[i].style.display = "none";
+          }
+  
+          console.log(`Player's deck size: ${playerDeck.length}`);
+          console.log(`Computer's deck size: ${computerDeck.length}`);
+        }, 3000);
     }
 }
 
@@ -358,15 +370,35 @@ function checkGameEnd() {
     }
 }
 
+function playCard() {
+  console.log('button click registered');
+  // hide play card button
+  document.getElementById("play-card").style.display = "none";
 
+
+  // flip player card
+  const playerCard = document.querySelector("#player-cards .card:last-child .flip-card");
+  if (playerCard) {
+    playerCard.classList.add("flipped");
+  }
+
+  // reveal attr buttons
+  const attrButtons = document.getElementsByClassName("attr-button");
+  for (let i = 0; i < attrButtons.length; i++) {
+    attrButtons[i].style.display = "block";
+  }
+}
 
 function playRound() {
     initCards();
     checkGameEnd();
+    document.getElementById("next-round").style.display = "none";
+    document.getElementById("play-card").style.display = "block";
 }
 
 
 document.getElementById("next-round").addEventListener("click", playRound);
+document.getElementById("play-card").addEventListener("click", playCard);
 
 
 // ------------------------------------------------------------------------ 
