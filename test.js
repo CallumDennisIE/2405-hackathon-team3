@@ -172,13 +172,39 @@ function initCards() {
     let playerDeck = deck.slice(0, 5);
     let computerDeck = deck.slice(5, 10);
 
+    renderDeckToScreen(playerDeck, 'player-cards');
+    renderDeckToScreen(computerDeck, 'computer-cards');
+
     console.log("Player Deck");
     console.table(playerDeck);
     console.log("Computer Deck");
     console.table(computerDeck);
 }
 
-
+function renderDeckToScreen(deck, containerId) {
+    console.log("rendering deck to screen");
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    deck.forEach(function(card) {
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+        cardElement.innerHTML = `
+            <div id="player-card" class="card">
+                <div class="flip-card" tabIndex="0">
+                    <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="assets/images/cards/${card.imageName}" class="card-image" alt="Front of ${card.name}">
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="assets/images/cards/card_basic_back.png" class="card-image" alt="Back of Card">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.appendChild(cardElement);
+    });
+}
 
 function playRound() {
     initCards();
