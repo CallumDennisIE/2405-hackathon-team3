@@ -51,7 +51,11 @@ Visit the deployed website [here](https://callumdennisie.github.io/2405-hackatho
 
 ![Color Scheme Image](assets/readme-files/palette.png)
 
-To be added
+The main colors used on the website are:
+- Two shades of blue, #007BFF and #0056B3, for the buttons and their hover effects,
+- Mustard yellow, #FFDD57, for the headers,
+- Gold, #D19E2F, for the text in the instructions pane,
+- Off-white, #E2EAEC, for the error message when the user enters an invalid username.
 
 ### Typography
 ![Type Font Image](assets/readme-files/fonts.png)
@@ -135,11 +139,11 @@ As a user, I want the website to be easy to navigate.
  - Buttons are clearly labelled and easy to find.
 
 As a user, I want the game to be fun and engaging.
- - The game is straightforward and can be played immediately.
  - The base game, Top Trump, is well known among players of all ages, allowing even the youngest Star Wars fans to participate in this game.
  - The cards are designed using some of the most popular figures across the Star Wars universe, allowing users to reconnect with their favorite characters.
  - The game uses sound effects of iconic Star Wars sounds, allowing users to enjoy the experience with multiple senses.
  - The game provides feedback and a victory sound to keep the user motivated and engaged.
+ - The game contains many Easter Eggs in the form of gifs and quotes to keep users entertained. 
 
 As a user, I want to receive feedback about my performance in the game.
  - The game provides feedback after a game ends in a win, loss, or draw.
@@ -210,12 +214,45 @@ Feature | Outcome | Pass/Fail
 --- | --- | ---
 Add Feature Here | Add Outcome Here | Pass
 
+Name Input
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Player enters a name | Player is greeting by name | Pass
+Player doesn't enter a name | An message appears | Pass
+
+Instructions Popup
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Clicking i symbol | Instructions are displayed as popup | Pass
+Clicking x symbol | Instructions popup is closed | Pass
+
+Game Over Screen
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Hovering over the buttons | Button text changes  | Pass
+Clicking on the buttons | Restart / Quits game  | Pass
+Game Over Screen | A gif plays in the background | Pass
+
+Victory Screen
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Hovering over the buttons | Button text changes  | Pass
+Clicking on the buttons | Restart / Quits game  | Pass
+Victory Screen | A gif plays in the background | Pass
+
+
+Buttons
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Hovering over a button | Slight color change  to provide feedback | Pass
 
 404 Page
 Feature | Outcome | Pass/Fail
 --- | --- | ---
 404 Page | A broken or misspelled address will redirect the user to the 404 page | Pass
-Clicking on the Link | The user is taken back to the main page | Pass
+404 Page | A gif plays in the background | Pass
+Clicking on the Button | The user is taken back to the main page | Pass
+
 
 [Back to top ⇧](#lightsaber-legends)
 
@@ -249,7 +286,7 @@ All content was written by the developers.
 ### Media
 The sounds used on the website were downloaded from [Pixabay](https://pixabay.com/) and [Voicy](https://voicy.network).
 
-The background images were created using [Getimg.ai](https://getimg.ai/).
+The background image was created using [Getimg.ai](https://getimg.ai/).
 
 The gifs for the Game Over Screen, the Victory Screen, and the 404-Page were dpwnloaded from [Gifs.com](https://gifs.com/).
 
