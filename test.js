@@ -356,6 +356,9 @@ function checkGameEnd() {
         updateGameResult(result); // Pass the result to updateGameResult
         playRound();
 
+        // Display victory screen when game ends
+        victoryScreen.style.display = "flex";
+
         playerWins = 0;
         computerWins = 0;
 
