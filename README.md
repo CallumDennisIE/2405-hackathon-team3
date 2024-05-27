@@ -1,5 +1,5 @@
 # Lightsaber Legends
-![Mockup Image Image](assets/readme-files/mockups.png)
+![Mockup Image Image](assets/readme-files/mockup.png)
 
 Lightsaber Legends is an electrifying online version of Top Trumps that immerses Star Wars fans in the epic galaxy far, far away! This thrilling game lets you pit iconic characters like Luke Skywalker, Darth Vader, and Rey against each other, comparing their unique attributes and abilities. Each duel is a chance to showcase your strategic skills and Star Wars knowledge, making every victory even sweeter. Whether you're a Jedi Master or a Sith Lord, Lightsaber Legends offers an engaging, force-filled experience that no Star Wars aficionado can resist!
 
@@ -76,13 +76,13 @@ The fallback font, in case either font isn't loaded correctly, is Sans Serif.
 
 ### Game Area
 **Board**
-![Board Image](assets/readme-files/board.png)
+![Board Image](assets/readme-files/game-board.png)
 
 **Game Over Announcement**
-![Game Over Gif](assets/readme-files/game-over-gif.gif)
+![Game Over Gif](assets/readme-files/game-over-screen-gif.gif)
 
 **Victory Announcement**
-![Victory  Gif](assets/readme-files/victory-gif.gif)
+![Victory  Gif](assets/readme-files/victory-screen-gif.gif)
 
 ### Popups
 **Instructions Popup**
@@ -192,7 +192,7 @@ As a user, I want to be able to play the game on different devices.
 Browser | Outcome | Pass/Fail
 --- | --- | ---
 Google Chrome | No issues with appearance, responsiveness, or functionality. | Pass
-Safari | No issues with appearance, responsiveness, or functionality. | Pass
+Safari | Issues with appearance, responsiveness, or functionality.* | Fail
 Mozilla Firefox | No issues with appearance, responsiveness, or functionality. | Pass
 Microsoft Edge | No issues with appearance, responsiveness, or functionality. | Pass
 JoyUI Native Browser | No issues with appearance, responsiveness, or functionality. | Pass
@@ -200,13 +200,14 @@ JoyUI Native Browser | No issues with appearance, responsiveness, or functionali
 **Device Compatibility**
 Device | Outcome | Pass/Fail
 --- | --- | ---
-MacBook Pro 13" | No issues with appearance, responsiveness, or functionality. | Pass
-iPhone 13 Mini | No issues with appearance, responsiveness, or functionality. | Pass
-iPad 9th Generation | No issues with appearance, responsiveness, or functionality. | Pass
+MacBook Pro 13" | Issues with appearance, responsiveness, or functionality.* | Fail
+iPhone 13 Mini | Issues with appearance, responsiveness, or functionality.* | Fail
+iPad 9th Generation | Issues with appearance, responsiveness, or functionality.* | Fail
 Acer Predator Helios 300 | No issues with appearance, responsiveness, or functionality. | Pass
 Black Shark PAR-HOA | No issues with appearance, responsiveness, or functionality. | Pass
-Samsung Galaxy S23 | No issues with appearance, responsiveness, or functionality. | Pass
+Samsung Galaxy A34 | No issues with appearance, responsiveness, or functionality. | Pass
 
+*Comment: On Safari on Mac and iOS, the cards on the stacks display mirrored and face-side up rather than cover-side up.
 
 **Common Elements Testing**
 
@@ -226,19 +227,12 @@ Feature | Outcome | Pass/Fail
 Clicking i symbol | Instructions are displayed as popup | Pass
 Clicking x symbol | Instructions popup is closed | Pass
 
-Game Over Screen
+End Game Screens
 Feature | Outcome | Pass/Fail
 --- | --- | ---
-Hovering over the buttons | Button text changes  | Pass
-Clicking on the buttons | Restart / Quits game  | Pass
 Game Over Screen | A gif plays in the background | Pass
-
-Victory Screen
-Feature | Outcome | Pass/Fail
---- | --- | ---
-Hovering over the buttons | Button text changes  | Pass
-Clicking on the buttons | Restart / Quits game  | Pass
 Victory Screen | A gif plays in the background | Pass
+End Game Screens | Screens appear for a few seconds when the game ends | Pass
 
 
 Buttons
@@ -259,8 +253,8 @@ Clicking on the Button | The user is taken back to the main page | Pass
 ## Finished Product
 Page | Desktop Version | Mobile Version
 --- | --- | ---
-Home | ![Home Desktop Image](assets/readme-files/home-desktop.png) | ![Home Mobile Image](assets/readme-files/home-mobile.png)
-404 | ![404 Desktop Image](assets/readme-files/404-desktop.png) | ![404 Mobile Image](assets/readme-files/404-mobile.png)
+Home | ![Home Desktop Image](assets/readme-files/finished-home.png) | ![Home Mobile Image](assets/readme-files/finished-mobile.png)
+
 
 [Back to top ⇧](#lightsaber-legends)
 
@@ -301,4 +295,6 @@ The cards were created using [Canva](https://www.canva.com/).
 
 ## Acknowledgements
 
-- To be added.
+- Andrew Dempsey
+- Suzanne Deakin 
+- Code Institute
