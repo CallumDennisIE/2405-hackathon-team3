@@ -14,7 +14,6 @@ let mainLoginScreen = document.getElementById("login-screen");
 let getInstructions = document.getElementById("instructions-icon");
 let errorMessage = document.getElementById("error-message");
 let mainGameScreen = document.getElementById("main-game-container");
-let gameOverScreen = document.getElementById("game-over-screen");
 let modal = document.getElementById("myModal");
 let closeBtn = document.getElementById("close-btn");
 let closeXBtn = document.getElementById("close-x-btn");
@@ -28,7 +27,6 @@ function runMainScreen() {
     errorMessage.style.display = "none";
     mainGameScreen.style.display = "none";
     document.getElementById("user-icon").style.display = "none";
-    gameOverScreen.style.display = "none";
     document.getElementById("username").innerText = "";
     document.getElementById("user").focus(); //focus on input element with cursor ready for username input
 }
@@ -348,10 +346,6 @@ function checkGameEnd() {
             computerGameWins++;
             result = "computer wins"; // Assign the result
             console.log(result); // Log the result variable
-
-            // Load Game Over screen when compuer wins
-            gameOverScreen.style.display = "flex";
-
         } else {
             playerGameWins++;
             result = "player wins"; // Assign the result
