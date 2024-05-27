@@ -351,41 +351,6 @@ button:hover {
     margin: 0.2em;
 }
 
-#victory-screen .button {
-    position: relative;
-    background-color: #007BFF;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-    margin: 10px;
-    padding: 10px 20px;
-}
-
-#victory-buttons {
-    display: flex;
-    flex-direction: row;
-}
-
-#victory-screen .button:hover {
-    background-color: #0056b3;
-}
-
-/* https://www.w3schools.com/cssref/func_attr.php */
-/* https://css-tricks.com/almanac/selectors/a/after-and-before/c*/
-#victory-screen .button::before {
-    content: attr(data-original-text);
-}
-
-#play-again-yes:hover::before {
-    content: attr(data-hover-text);
-}
-
-#play-again-no:hover::before {
-    content: attr(data-hover-text);
-}
 
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
