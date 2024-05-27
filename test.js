@@ -114,6 +114,13 @@ document.getElementById("user").addEventListener("keydown", function (event) {
     }
 });
 
+function message(message) {
+    document.getElementById('messageDisplay').innerHTML = message;
+    setTimeout(() => {
+        document.getElementById('messageDisplay').innerHTML = '';
+    }, 3000);
+}
+
 // Define the cards
 class Card {
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
@@ -266,6 +273,7 @@ function displayAttribute(attribute) {
         if (result === 'A') {
             // Player wins
             playerWins++;
+            message('The force is strong! You win this match!');
             console.log(`You win! Player wins: ${playerWins}, Computer wins: ${computerWins}`);
             // console.log(`${userSide === 'light' ? 'The Force is strong' : 'The Dark side prevails'} with ${playerCard.name}! ${userSide === 'light' ? 'Light' : 'Dark'} Side wins the round with ${attribute}.`);
             playerDeck.unshift(playerDeck.pop(), computerDeck.pop());
@@ -273,11 +281,13 @@ function displayAttribute(attribute) {
         } else if (result === 'B') {
             // Computer wins
             computerWins++;
+            message('The Dark Side prevails! You have been defeated this round.');
             console.log(`Computer wins! Player wins: ${playerWins}, Computer wins: ${computerWins}`);
             // console.log(`${userSide === 'light' ? 'The Dark side prevails' : 'The Force is strong'} with ${computerCard.name}! ${userSide === 'light' ? 'Dark' : 'Light'} Side wins the round with ${attribute}.`);
             computerDeck.unshift(playerDeck.pop(), computerDeck.pop());
         } else {
             // None wins
+            message('It\'s a tie! Both cards are discarded into the Sarlacc pit.');
             console.log("It's a tie! Both cards are discarded into the Sarlacc pit.");
             playerDeck.pop();
             computerDeck.pop();
