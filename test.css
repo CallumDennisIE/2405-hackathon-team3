@@ -203,7 +203,7 @@ input::placeholder {
 }
 
 #game-count {
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 /* Game screen */
@@ -333,11 +333,37 @@ button:hover {
     top: 50vh;
     font-size: 20px;
     font-weight: 900;
-    color: yellow;
+    color: #ffdd57;
     text-shadow: 4px 4px 4px #000;
     font-family: "Rammetto One", cursive, sans-serif;
 }
 
+#openQuitGameContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#quitModal {
+    position: fixed;
+    width: 70%;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffdd57;
+    padding: 40px;
+    font-size: large;
+    text-shadow: 4px 4px 4px #000;
+    font-family: "Rammetto One", cursive, sans-serif;
+}
+
+#quitGame,
+#cancelQuit {
+    margin: 30px;
+}
 /* Victory Screen */
 
 #victory-screen {

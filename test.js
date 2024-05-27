@@ -4,7 +4,6 @@
  */
 document.addEventListener('DOMContentLoaded', function () {
     runMainScreen();
-    checkGameEnd();
 });
 
 /**
@@ -37,6 +36,8 @@ function runMainScreen() {
     document.getElementById("victory-screen").style.display = "none";
     document.getElementById("username").innerText = "";
     document.getElementById("user").focus(); //focus on input element with cursor ready for username input
+    document.getElementById('quitModal').style.display = "none";
+    document.getElementById('openQuitGame').style.display = "none";
 }
 
 /**
@@ -429,11 +430,36 @@ function playRound() {
     checkGameEnd();
     document.getElementById("next-round").style.display = "none";
     document.getElementById("play-card").style.display = "block";
+    document.getElementById("openQuitGame").style.display = "block";
 }
 
+function quitGame() {
+    mainLoginScreen.style.display = "block";
+    errorMessage.style.display = "none";
+    mainGameScreen.style.display = "none";
+    victoryScrren.style.display = "none";
+    gameCount.style.display = "block";
+    winCount.style.display = "none";
+    document.getElementById('quitModal').style.display = "none";
+    document.getElementById('openQuitGame').style.display = "none";
+    document.getElementById('user-input').style.display = "none";
+}
+
+function cancelQuit() {
+    document.getElementById('quitModal').style.display = "none";
+    document.getElementById('openQuitGame').style.display = "block";
+}
+
+function openQuitGame() {
+    document.getElementById('quitModal').style.display = "block";
+    document.getElementById('openQuitGame').style.display = "none";
+}
 
 document.getElementById("next-round").addEventListener("click", playRound);
 document.getElementById("play-card").addEventListener("click", playCard);
+document.getElementById("quitGame").addEventListener("click", quitGame);
+document.getElementById("cancelQuit").addEventListener("click", cancelQuit);
+document.getElementById("openQuitGame").addEventListener("click", openQuitGame);
 
 
 // ------------------------------------------------------------------------ 
