@@ -272,7 +272,6 @@ input::placeholder {
   
   .flip-card.flipped .flip-card-inner {
     transform: rotateY(0deg); /* Flip to face up */
-    -webkit-transform: rotateY(0deg);
   }
   
   .flip-card-front,
@@ -291,7 +290,6 @@ input::placeholder {
   
   .flip-card-back {
     transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
     z-index: 1;
     display: flex;
     justify-content: center;
