@@ -18,6 +18,9 @@ let victoryScreen = document.getElementById("victory-screen")
 let modal = document.getElementById("myModal");
 let closeBtn = document.getElementById("close-btn");
 let closeXBtn = document.getElementById("close-x-btn");
+let victoryScrren = document.getElementById("victory-screen");
+let gameCount = document.getElementById("game-count");
+let winCount = document.getElementsByClassName("win-count")[0];
 
 
 /**
@@ -27,6 +30,9 @@ function runMainScreen() {
     mainLoginScreen.style.display = "block";
     errorMessage.style.display = "none";
     mainGameScreen.style.display = "none";
+    victoryScrren.style.display = "none";
+    gameCount.style.display = "none";
+    winCount.style.display = "none";
     document.getElementById("user-icon").style.display = "none";
     document.getElementById("victory-screen").style.display = "none";
     document.getElementById("username").innerText = "";
@@ -44,6 +50,9 @@ function checkUsername() {
     if (username.length >= 1 && username.length <= 12) {
         mainGameScreen.style.display = "block";
         mainLoginScreen.style.display = "none";
+        victoryScrren.style.display = "none";
+        gameCount.style.display = "block";
+        winCount.style.display = "block";
         document.getElementById("user-icon").style.display = "block";
         document.getElementById("username").innerText = username;
     } else {
@@ -364,6 +373,11 @@ function checkGameEnd() {
 
         document.getElementById("game-win").innerHTML = `<span>Game Wins</span>  ${playerGameWins}`;
         document.getElementById("game-lost").innerHTML = `<span>Game Losses</span>  ${computerGameWins}`;
+        victoryScrren.style.display = "block";
+        mainLoginScreen.style.display = "none";
+        mainGameScreen.style.display = "none";
+        gameCount.style.display = "none";
+        winCount.style.display = "none";
     }
 }
 
