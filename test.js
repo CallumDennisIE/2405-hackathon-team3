@@ -389,29 +389,34 @@ function checkGameEnd() {
             console.log(result); // Log the result variable
 
             // Display Game Over screen when computer wins
-            gameOverScreen.style.display = "flex";
+            gameOverScreen.style.display = "block";
+            
+            setTimeout(() => {
+                gameOverScreen.style.display = "none";
+            }, 3000);
 
         } else {
             playerGameWins++;
             result = "player wins"; // Assign the result
             console.log(result); // Log the result variable
+
+            // Display Victory Screen when player wins
+            victoryScreen.style.display = "block";
+
+            setTimeout(() => {
+                victoryScreen.style.display = "none";
+            }, 3000);
         }
+        
         updateGameResult(result); // Pass the result to updateGameResult
         playRound();
 
-        // Display Victory Screen when player wins
-        victoryScreen.style.display = "flex";
 
         playerWins = 0;
         computerWins = 0;
 
         document.getElementById("game-win").innerHTML = `<span>Game Wins</span>  ${playerGameWins}`;
         document.getElementById("game-lost").innerHTML = `<span>Game Losses</span>  ${computerGameWins}`;
-        victoryScrren.style.display = "block";
-        mainLoginScreen.style.display = "none";
-        mainGameScreen.style.display = "none";
-        gameCount.style.display = "none";
-        winCount.style.display = "none";
     }
 }
 
