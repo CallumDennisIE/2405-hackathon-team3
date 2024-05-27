@@ -317,6 +317,8 @@ button:hover {
     margin-top: 20px;
 }
 
+#message-container,
+#messageDisplay,
 .controls {
     position: fixed;
     top: 70vh;
@@ -324,6 +326,16 @@ button:hover {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+#messageDisplay {
+    z-index: 1000;
+    top: 50vh;
+    font-size: 20px;
+    font-weight: 900;
+    color: yellow;
+    text-shadow: 4px 4px 4px #000;
+    font-family: "Rammetto One", cursive, sans-serif;
 }
 
 /* Victory Screen */
