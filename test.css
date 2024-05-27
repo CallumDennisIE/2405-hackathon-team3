@@ -19,15 +19,16 @@ body {
 
 #game-container {
     width: 100%;
-    height: 100%;
-    top: 45%;
     max-width: 700px;
     margin: 0 auto;
     padding: 20px;
 }
 
 #main-game-container {
-    padding-bottom: 400px;
+    /* padding-bottom: 400px; */
+    /* max-height: 700px; */
+    /* position: relative;
+    overflow: hidden;  */
 }
 
 h1 {
@@ -266,10 +267,12 @@ input::placeholder {
     backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     transform: rotateY(180deg); /* Initially face down */
+    -webkit-transform: rotateY(180deg);
   }
   
   .flip-card.flipped .flip-card-inner {
     transform: rotateY(0deg); /* Flip to face up */
+    -webkit-transform: rotateY(0deg);
   }
   
   .flip-card-front,
@@ -288,6 +291,7 @@ input::placeholder {
   
   .flip-card-back {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
     z-index: 1;
     display: flex;
     justify-content: center;
@@ -296,6 +300,7 @@ input::placeholder {
 
 .button:active {
     transform: translateY(4px);
+    -webkit-transform:  translateY(4px);
 }
 
 button {
