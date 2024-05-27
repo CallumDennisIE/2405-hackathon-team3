@@ -6,6 +6,23 @@ document.addEventListener('DOMContentLoaded', function () {
     runMainScreen();
 });
 
+
+document.getElementById("sound-on").style.display = "block";
+document.getElementById("sound-off").style.display = "none";
+
+document.getElementById("sound-on").addEventListener("click", function() {
+    console.log("Sound is ON");
+    document.getElementById("sound-on").style.display = "none";
+    document.getElementById("sound-off").style.display = "block";
+});
+
+document.getElementById("sound-off").addEventListener("click", function() {
+    console.log("Sound is OFF");
+    document.getElementById("sound-off").style.display = "none";
+    document.getElementById("sound-on").style.display = "block";
+});
+
+
 /**
  * Set up of game variables to vary display/hide
  */
@@ -416,12 +433,17 @@ function playCard() {
   
   for (let i = 0; i < characters.length; i++) {
     if (characters[i].name == cardName) {
-        let sfxName = (characters[i].sfxName)
-        console.log(`playing ${sfxName}`)
-        new Audio(`assets/sfx/${sfxName}`).play();
+        let sfxName = characters[i].sfxName;
+        if (document.getElementById("sound-on").style.display === "block") {
+            console.log(`Playing ${sfxName}`);
+            new Audio(`assets/sfx/${sfxName}`).play();
+        } else {
+            console.log("Sound is OFF");
+            const audio = new Audio();
+            audio.pause();
+        }
     }
 }
-    
     
 
   // reveal attr buttons
