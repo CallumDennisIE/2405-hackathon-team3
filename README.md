@@ -1,5 +1,5 @@
 # Lightsaber Legends
-![Mockup Image Image](assets/readme-files/mockups.png)
+![Mockup Image Image](assets/readme-files/mockup.png)
 
 Lightsaber Legends is an electrifying online version of Top Trumps that immerses Star Wars fans in the epic galaxy far, far away! This thrilling game lets you pit iconic characters like Luke Skywalker, Darth Vader, and Rey against each other, comparing their unique attributes and abilities. Each duel is a chance to showcase your strategic skills and Star Wars knowledge, making every victory even sweeter. Whether you're a Jedi Master or a Sith Lord, Lightsaber Legends offers an engaging, force-filled experience that no Star Wars aficionado can resist!
 
@@ -73,16 +73,17 @@ The fallback font, in case either font isn't loaded correctly, is Sans Serif.
 ### General
 - The site was built using a mobile-first approach. 
 - Media queries were used to adapt features for larger screens to ensure responsive designs across different screen sizes. 
+- Each card plays a unique sound effect when drawn.
 
 ### Game Area
 **Board**
-![Board Image](assets/readme-files/board.png)
+![Board Image](assets/readme-files/game-board.png)
 
 **Game Over Announcement**
-![Game Over Gif](assets/readme-files/game-over-gif.gif)
+![Game Over Gif](assets/readme-files/game-over-screen-gif.gif)
 
 **Victory Announcement**
-![Victory  Gif](assets/readme-files/victory-gif.gif)
+![Victory  Gif](assets/readme-files/victory-screen-gif.gif)
 
 ### Popups
 **Instructions Popup**
@@ -192,7 +193,7 @@ As a user, I want to be able to play the game on different devices.
 Browser | Outcome | Pass/Fail
 --- | --- | ---
 Google Chrome | No issues with appearance, responsiveness, or functionality. | Pass
-Safari | No issues with appearance, responsiveness, or functionality. | Pass
+Safari | Issues with appearance, responsiveness, or functionality. * | Pass
 Mozilla Firefox | No issues with appearance, responsiveness, or functionality. | Pass
 Microsoft Edge | No issues with appearance, responsiveness, or functionality. | Pass
 JoyUI Native Browser | No issues with appearance, responsiveness, or functionality. | Pass
@@ -201,18 +202,15 @@ JoyUI Native Browser | No issues with appearance, responsiveness, or functionali
 Device | Outcome | Pass/Fail
 --- | --- | ---
 MacBook Pro 13" | No issues with appearance, responsiveness, or functionality. | Pass
-iPhone 13 Mini | No issues with appearance, responsiveness, or functionality. | Pass
-iPad 9th Generation | No issues with appearance, responsiveness, or functionality. | Pass
 Acer Predator Helios 300 | No issues with appearance, responsiveness, or functionality. | Pass
 Black Shark PAR-HOA | No issues with appearance, responsiveness, or functionality. | Pass
-Samsung Galaxy S23 | No issues with appearance, responsiveness, or functionality. | Pass
+Samsung Galaxy A34 | No issues with appearance, responsiveness, or functionality. | Pass
+iPhone 13 Mini | Issues with appearance, responsiveness, or functionality. * | Fail
+iPad 9th Generation | Issues with appearance, responsiveness, or functionality. * | Fail
 
+*Comment: Cards on the stack display mirrored and face-side up rather than cover-side up.
 
 **Common Elements Testing**
-
-Feature | Outcome | Pass/Fail
---- | --- | ---
-Add Feature Here | Add Outcome Here | Pass
 
 Name Input
 Feature | Outcome | Pass/Fail
@@ -220,24 +218,22 @@ Feature | Outcome | Pass/Fail
 Player enters a name | Player is greeting by name | Pass
 Player doesn't enter a name | An message appears | Pass
 
+Volume Button
+Feature | Outcome | Pass/Fail
+--- | --- | ---
+Clicking Volume button | Volume gets muted | Pass
+Clicking Volume button when muted | Volume gets un-muted | Pass
+
 Instructions Popup
 Feature | Outcome | Pass/Fail
 --- | --- | ---
 Clicking i symbol | Instructions are displayed as popup | Pass
 Clicking x symbol | Instructions popup is closed | Pass
 
-Game Over Screen
+Game End Screens
 Feature | Outcome | Pass/Fail
 --- | --- | ---
-Hovering over the buttons | Button text changes  | Pass
-Clicking on the buttons | Restart / Quits game  | Pass
 Game Over Screen | A gif plays in the background | Pass
-
-Victory Screen
-Feature | Outcome | Pass/Fail
---- | --- | ---
-Hovering over the buttons | Button text changes  | Pass
-Clicking on the buttons | Restart / Quits game  | Pass
 Victory Screen | A gif plays in the background | Pass
 
 
