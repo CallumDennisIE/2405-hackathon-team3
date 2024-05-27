@@ -262,7 +262,11 @@ input::placeholder {
     height: 100%;
     text-align: center;
     transition: transform 0.6s;
+    -webkit-transition: transform 0.6s;
+    -moz-transition: transform 0.6s;
+    -o-transition: transform 0.6s;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
     backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     transform: rotateY(180deg); /* Initially face down */
@@ -270,6 +274,9 @@ input::placeholder {
   
   .flip-card.flipped .flip-card-inner {
     transform: rotateY(0deg); /* Flip to face up */
+    -webkit-transform: rotateY(0deg); /* Flip to face up */
+    -moz-transform: rotateY(0deg); /* Flip to face up */
+    -o-transform: rotateY(0deg); /* Flip to face up */
   }
   
   .flip-card-front,
@@ -288,6 +295,9 @@ input::placeholder {
   
   .flip-card-back {
     transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
     z-index: 1;
     display: flex;
     justify-content: center;
