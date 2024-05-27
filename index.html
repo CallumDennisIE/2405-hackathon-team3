@@ -27,7 +27,7 @@
         <section id="login-screen" aria-labelledby="game-title">
             <p>Welcome To</p>
             <h1 id="game-title" class="game-title">Star Wars Card Game</h1>
-            <div class="user-input">
+            <div class="user-input" id="user-input">
                 <label for="user">Please enter your name</label>
                 <br />
                 <input type="text" id="user" name="user" maxlength="12" placeholder="Type your name..." />
@@ -67,6 +67,17 @@
                 <button class="button" id="close-btn">Close</button>
             </div>
         </section>
+
+        <div id="openQuitGameContainer">
+            <button id="openQuitGame">Quit Game!</button>
+        </div>
+        <div id="quitModal">
+            <h2>Are you sure?</h2>
+            <div>
+                <button id="quitGame">I want to Quit</button>
+                <button id="cancelQuit">Lets Keep Fighting!</button>
+            </div>
+        </div>
 
         <div id="game-count">
             <h2 id="game-win"><span>Game Wins</span> 0</h2>
