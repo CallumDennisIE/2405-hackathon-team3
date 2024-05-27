@@ -68,22 +68,22 @@
             </div>
         </section>
 
-        <div>
+        <div id="game-count">
             <h2 id="game-win"><span>Game Wins</span> 0</h2>
             <h2 id="game-lost"><span>Game Losses</span> 0</h2>
         </div>
 
         <div class="win-count">
-            <p>Player Wins: <span id="player-wins">0</span></p>
-            <p>Computer Wins: <span id="computer-wins">0</span></p>
+            <p>Card Wins: <span id="computer-wins">0</span> - Losses: <span id="player-wins">0</span></p>
         </div>
         
         <section id="main-game-container" aria-labelledby="main-game-title">
             <h1 id="main-game-title">Star Wars Card Game</h1>
-            <div class="credits-status">
+            <!-- <div class="credits-status">
                 <p id="creditsDisplay">Credits: 1000</p>
                 <p id="messageDisplay"></p>
-            </div>
+            </div> -->
+            <button id="next-round">Play Round</button>
             <div class="cards-container">
                 <div class="player-cards" id="player-cards">
                     <h2>Player's Cards</h2>
@@ -94,6 +94,7 @@
             </div>
             <section class="controls">
                 <div class="buttons">
+                    <button id="play-card">Pick Card To Play</button>
                     <div class="attr-button" onclick="displayAttribute('attack')" data-attribute="attack">
                         <img src="assets/images/buttons/strength.png" class="button-image" alt="Attack Button">
                     </div>
@@ -103,9 +104,7 @@
                     <div class="attr-button" onclick="displayAttribute('force')" data-attribute="force">
                         <img src="assets/images/buttons/force.png" class="button-image" alt="Force Button">
                     </div>
-                    <button id="play-card">Pick Card To Play</button>
                 </div>
-                <button id="next-round">Play Round</button>
             </section>
             <div class="status">
                 <p id="status-message"></p>
