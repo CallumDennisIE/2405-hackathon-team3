@@ -1,4 +1,28 @@
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
+// Hello.
+//
+// This is JSHint, a tool that helps to detect errors and potential
+// problems in your JavaScript code.
+//
+// To start, simply enter some JavaScript anywhere on this page. Your
+// report will appear on the right side.
+//
+// Additionally, you can toggle specific options in the Configure
+// menu.
+
 /* jshint esversion: 6 */
+
+
 /**
  * Add an event listener to the document and run the main screen with user log-in
  */
@@ -11,13 +35,11 @@ document.getElementById("sound-on").style.display = "block";
 document.getElementById("sound-off").style.display = "none";
 
 document.getElementById("sound-on").addEventListener("click", function() {
-    console.log("Sound is ON");
     document.getElementById("sound-on").style.display = "none";
     document.getElementById("sound-off").style.display = "block";
 });
 
 document.getElementById("sound-off").addEventListener("click", function() {
-    console.log("Sound is OFF");
     document.getElementById("sound-off").style.display = "none";
     document.getElementById("sound-on").style.display = "block";
 });
@@ -96,6 +118,10 @@ let computerGameWins = 0;
 let playerWins = 0;
 let computerWins = 0;
 
+
+/**
+ * Show instructions modal
+ */
 function showInstructions() {
     modal.classList.add("show-modal");
     document.body.classList.add('greyout-background');
@@ -104,6 +130,10 @@ function showInstructions() {
 closeBtn.addEventListener("click", closeInstructions);
 closeXBtn.addEventListener("click", closeInstructions);
 
+
+/**
+ * Close instructions modal
+ */
 function closeInstructions() {
     modal.classList.remove("show-modal");
     document.body.classList.remove('greyout-background');
@@ -128,6 +158,11 @@ document.getElementById("user").addEventListener("keydown", function (event) {
     }
 });
 
+
+/**
+ * Display a message for a short period
+ * @param {string} message - The message to display
+ */
 function message(message) {
     document.getElementById('messageDisplay').innerHTML = message;
     setTimeout(() => {
@@ -146,12 +181,12 @@ class Card {
     upgrade() { this.rarity = 'rare'; }
 }
 
-const getRandomCommonValue = () => getRandomNumber(10, 100); // Common value
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min; // Pick random stats for each rarity (within the min-max values)
 
-
-
-// Shuffle both Light and Dark side decks separately
+/**
+ * Shuffle a deck of cards
+ * @param {Array} deck - The deck of cards to shuffle
+ * @returns {Array} The shuffled deck
+ */
 function shuffleDeck(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -160,6 +195,7 @@ function shuffleDeck(deck) {
     return deck;
 }
 
+// List of characters with their attributes.
 const characters = [
     { name: 'Luke Skywalker', attack: 80, defense: 70, force: 70, side: "Light", imageName: "card_basic_front_luke.png", sfxName: "sfx_basic_luke.mp3" },
     { name: 'Han Solo', attack: 60, defense: 40, force: 10, side: "Light", imageName: "card_basic_front_han.png", sfxName: "sfx_basic_han.mp3" },
@@ -201,6 +237,10 @@ const characters = [
 
 ];
 
+
+/**
+ * Initialize the game with a deck of cards
+ */
 function initCards() {
     let deck = [];
     characters.forEach(character => {
@@ -208,35 +248,32 @@ function initCards() {
     });
 
     shuffleDeck(deck);
-
-    // Split decks - player / computer based on the side 
-    var half_length = Math.ceil(deck.length / 2);
     
     playerDeck = deck.slice(0, 5);
     computerDeck = deck.slice(6,11);
 
     renderDeckToScreen(playerDeck, 'player-cards');
     renderDeckToScreen(computerDeck, 'computer-cards');
-
-    console.log("Player Deck");
-    console.table(playerDeck);
-    console.log("Computer Deck");
-    console.table(computerDeck);
 }
 
+
+/**
+ * Render the deck of cards to the screen
+ * @param {Array} deck - The deck of cards to render
+ * @param {string} containerId - The ID of the HTML container element
+ */
 function renderDeckToScreen(deck, containerId) {
-    console.log("rendering deck to screen");
     const container = document.getElementById(containerId);
     container.innerHTML = '';
     deck.forEach(function (card) {
         const cardElement = document.createElement('div');
         cardElement.classList.add('card');
-        cardElement.id = 'player-card'
-        cardElement.setAttribute('data-name', `${card.name}`)
-        cardElement.setAttribute('data-attack', `${card.attack}`)
-        cardElement.setAttribute('data-defense', `${card.defense}`)
-        cardElement.setAttribute('data-force', `${card.force}`)
-        cardElement.setAttribute('data-side', `${card.side}`)
+        cardElement.id = 'player-card';
+        cardElement.setAttribute('data-name', `${card.name}`);
+        cardElement.setAttribute('data-attack', `${card.attack}`);
+        cardElement.setAttribute('data-defense', `${card.defense}`);
+        cardElement.setAttribute('data-force', `${card.force}`);
+        cardElement.setAttribute('data-side', `${card.side}`);
         cardElement.innerHTML = `
                 <div class="flip-card" tabIndex="0">
                     <div class="flip-card-inner">
@@ -253,8 +290,12 @@ function renderDeckToScreen(deck, containerId) {
     });
 }
 
+
+/**
+ * Handles the display of card attributes and determines the winner of each round.
+ * @param {string} attribute - The attribute to compare between player and computer cards.
+ */
 function displayAttribute(attribute) {
-    console.log(`Attribute ${attribute} selected`);
     const playerCard = document.querySelector("#player-cards .card:last-child");
     const computerCard = document.querySelector("#computer-cards .card:last-child");
     let playerValue;
@@ -262,11 +303,9 @@ function displayAttribute(attribute) {
 
     if (playerCard) {
         playerValue = playerCard.dataset[attribute];
-        console.log(`${attribute} playerValue:`, playerValue);
     }
     if (computerCard) {
         computerValue = computerCard.dataset[attribute];
-        console.log(`${attribute} computerValue:`, computerValue);
         const flipCard = document.querySelector("#computer-cards .card:last-child .flip-card");
         if (flipCard) {
           flipCard.classList.add("flipped");
@@ -276,25 +315,20 @@ function displayAttribute(attribute) {
     if (playerCard && computerCard) {
         const compareCards = (playerValue, computerValue) => playerValue > computerValue ? 'A' : playerValue < computerValue ? 'B' : 'Tie';
         let result = compareCards(playerValue, computerValue);
-        console.log(result);
 
         if (result === 'A') {
             // Player wins
             playerWins++;
             message('The force is strong! You win this match!');
-            console.log(`You win! Player wins: ${playerWins}, Computer wins: ${computerWins}`);
             playerDeck.unshift(playerDeck.pop(), computerDeck.pop());
-            console.log(`Awesome work, here is some money credits!`);
         } else if (result === 'B') {
             // Computer wins
             computerWins++;
             message('The Dark Side prevails! You have been defeated this round.');
-            console.log(`Computer wins! Player wins: ${playerWins}, Computer wins: ${computerWins}`);
             computerDeck.unshift(playerDeck.pop(), computerDeck.pop());
         } else {
             // None wins
             message('It\'s a tie! Both cards are discarded into the Sarlacc pit.');
-            console.log("It's a tie! Both cards are discarded into the Sarlacc pit.");
             playerDeck.pop();
             computerDeck.pop();
         }
@@ -311,19 +345,18 @@ function displayAttribute(attribute) {
             checkGameEnd();
             renderDeckToScreen(playerDeck, 'player-cards');
             renderDeckToScreen(computerDeck, 'computer-cards');
-            
+
             document.getElementById("play-card").style.display = "block";
-  
-            console.log(`Player's deck size: ${playerDeck.length}`);
-            console.log(`Computer's deck size: ${computerDeck.length}`);
         }, 3000);
     }
 }
 
 
+/**
+ * Displays attribute buttons on the screen and handles their click events.
+ */
 function displayAttributeButtons() {
     const buttonsContainer = document.querySelector('.buttons');
-    const attributes = ['attack', 'defense', 'force'];
 
     buttonsContainer.addEventListener('click', function (event) {
         const button = event.target.closest('.button');
@@ -352,17 +385,16 @@ function selectCardAttribute() {
 
 selectCardAttribute();
 
-function updateGameResult(result) {
-    console.log("Result:", result);
-}
 
+/**
+ * Checks if the game has ended and updates the game state accordingly.
+ */
 function checkGameEnd() {
     let result = '';
     if (playerDeck.length === 0 || computerDeck.length === 0) {
         if (playerDeck.length < 1) {
             computerGameWins++;
             result = "computer wins";
-            console.log(result);
 
             // Display Game Over screen when computer wins
             gameOverScreen.style.display = "block";
@@ -374,7 +406,6 @@ function checkGameEnd() {
         } else {
             playerGameWins++;
             result = "player wins";
-            console.log(result);
 
             // Display Victory Screen when player wins
             victoryScreen.style.display = "block";
@@ -384,9 +415,7 @@ function checkGameEnd() {
             }, 3000);
         }
         
-        updateGameResult(result);
         playRound();
-
 
         playerWins = 0;
         computerWins = 0;
@@ -396,8 +425,11 @@ function checkGameEnd() {
     }
 }
 
+
+/**
+ * Handles the logic when the player clicks the "Play Card" button.
+ */
 function playCard() {
-  console.log('button click registered this one');
   // hide play card button
   document.getElementById("play-card").style.display = "none";
   document.getElementById("openQuitGame").style.display = "block";
@@ -409,18 +441,14 @@ function playCard() {
     playerCard.classList.add("flipped");
   }
   
-  console.log(playerCard.parentElement.getAttribute('data-name'));
-  let cardName = playerCard.parentElement.getAttribute('data-name')
-  
+  let cardName = playerCard.parentElement.getAttribute('data-name');
   
   for (let i = 0; i < characters.length; i++) {
     if (characters[i].name == cardName) {
         let sfxName = characters[i].sfxName;
         if (document.getElementById("sound-on").style.display === "block") {
-            console.log(`Playing ${sfxName}`);
             new Audio(`assets/sfx/${sfxName}`).play();
         } else {
-            console.log("Sound is OFF");
             const audio = new Audio();
             audio.pause();
         }
@@ -434,6 +462,10 @@ function playCard() {
   }
 }
 
+
+/**
+ * Starts a new round of the game by initializing the cards and checking game end conditions.
+ */
 function playRound() {
     initCards();
     checkGameEnd();
@@ -442,6 +474,10 @@ function playRound() {
     document.getElementById("openQuitGame").style.display = "block";
 }
 
+
+/**
+ * Handles the logic when the player chooses to quit the game.
+ */
 function quitGame() {
     mainLoginScreen.style.display = "block";
     errorMessage.style.display = "none";
@@ -454,16 +490,25 @@ function quitGame() {
     document.getElementById('user-input').style.display = "none";
 }
 
+
+/**
+ * Handles the logic when the player chooses to cancel quitting the game.
+ */
 function cancelQuit() {
     document.getElementById('quitModal').style.display = "none";
     document.getElementById('openQuitGame').style.display = "block";
 }
 
+
+/**
+ * Handles the logic when the player chooses to open the quit game modal.
+ */
 function openQuitGame() {
     document.getElementById('quitModal').style.display = "block";
     document.getElementById('openQuitGame').style.display = "none";
 }
 
+// Event listeners setup
 document.getElementById("next-round").addEventListener("click", playRound);
 document.getElementById("play-card").addEventListener("click", playCard);
 document.getElementById("quitGame").addEventListener("click", quitGame);
