@@ -129,42 +129,42 @@ function shuffleDeck(deck) {
 }
 
 const characters = [
-    { name: 'Luke Skywalker', attack: 80, defense: 70, force: 70, side: "Light", imageName: "card_basic_front_luke.png" },
-    { name: 'Han Solo', attack: 60, defense: 40, force: 10, side: "Light", imageName: "card_basic_front_han.png" },
-    { name: 'Leia Organa', attack: 50, defense: 30, force: 50, side: "Light", imageName: "card_basic_front_leia.png" },
-    { name: 'Chewbacca', attack: 80, defense: 50, force: 10, side: "Light", imageName: "card_basic_front_chew.png" },
-    { name: 'Boba Fett', attack: 70, defense: 70, force: 0, side: "Dark", imageName: "card_basic_front_boba.png" },
-    { name: 'Darth Vader', attack: 99, defense: 80, force: 90, side: "Dark", imageName: "card_basic_front_vader.png" },
-    { name: 'Obi-Wan Kenobi', attack: 80, defense: 99, force: 80, side: "Light", imageName: "card_basic_front_obi.png" },
-    { name: 'Yoda', attack: 80, defense: 90, force: 99, side: "Light", imageName: "card_basic_front_yoda.png" },
-    { name: 'Rey', attack: 70, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_rey.png" },
-    { name: 'Grogu', attack: 50, defense: 30, force: 99, side: "Light", imageName: "card_basic_front_grogu.png" },
-    { name: 'R2-D2', attack: 50, defense: 50, force: 0, side: "Light", imageName: "card_basic_front_r2d2.png" },
-    { name: 'C-3PO', attack: 10, defense: 10, force: 0, side: "Light", imageName: "card_basic_front_c3po.png" },
-    { name: 'Anakin Skywalker', attack: 90, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_anakin.png" },
-    { name: 'Darth Sidious', attack: 70, defense: 70, force: 99, side: "Dark", imageName: "card_basic_front_sidious.png" },
-    { name: 'Jar Jar Binks', attack: 0, defense: 0, force: 0, side: "Light", imageName: "card_basic_front_binks.png" },
-    { name: 'Grand Moff Tarkin', attack: 70, defense: 30, force: 0, side: "Dark", imageName: "card_basic_front_tarkin.png" },
-    { name: 'Mace Windu', attack: 80, defense: 70, force: 90, side: "Light", imageName: "card_basic_front_windu.png" },
-    { name: 'Darth Maul', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_maul.png" },
-    { name: 'Qui-Gon Jinn', attack: 70, defense: 70, force: 80, side: "Light", imageName: "card_basic_front_quigon.png" },
-    { name: 'Padme Amidala', attack: 40, defense: 30, force: 10, side: "Light", imageName: "card_basic_front_padme.png" },
-    { name: 'General Grievous', attack: 70, defense: 80, force: 0, side: "Dark", imageName: "card_basic_front_grevious.png" },
-    { name: 'Kylo Ren', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_kylo.png" },
-    { name: 'Finn', attack: 60, defense: 50, force: 30, side: "Light", imageName: "card_basic_front_finn.png" },
-    { name: 'Poe Dameron', attack: 50, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_poe.png" },
-    { name: 'Supreme Leader Snoke', attack: 60, defense: 50, force: 90, side: "Dark", imageName: "card_basic_front_snoke.png" },
-    { name: 'General Hux', attack: 50, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_hux.png" },
-    { name: 'Maz Kanata', attack: 50, defense: 30, force: 40, side: "Light", imageName: "card_basic_front_kanata.png" },
-    { name: 'Captain Phasma', attack: 70, defense: 60, force: 40, side: "Dark", imageName: "card_basic_front_phasma.png" },
-    { name: 'Chief Chirpa', attack: 30, defense: 30, force: 0, side: "Light", imageName: "card_basic_front_chirpa.png" },
-    { name: 'Count Dooku', attack: 70, defense: 60, force: 60, side: "Dark", imageName: "card_basic_front_dooku.png" },
-    { name: 'Lando Calrissian', attack: 80, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_lando.png" },
-    { name: 'Nien Nunb', attack: 70, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_nunb.png" },
-    { name: 'Jabba The Hutt', attack: 30, defense: 10, force: 0, side: "Dark", imageName: "card_basic_front_jabba.png" },
-    { name: 'BB-8', attack: 30, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_bb8.png" },
-    { name: 'Admiral Ackbar', attack: 70, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_ackbar.png" },
-    { name: 'Jocasta Nu', attack: 0, defense: 10, force: 70, side: "Light", imageName: "card_basic_front_nu.png" }
+    { name: 'Luke Skywalker', attack: 80, defense: 70, force: 70, side: "Light", imageName: "card_basic_front_luke.png", sfxName: "sfx_basic_luke.mp3" },
+    { name: 'Han Solo', attack: 60, defense: 40, force: 10, side: "Light", imageName: "card_basic_front_han.png", sfxName: "sfx_basic_han.mp3" },
+    { name: 'Leia Organa', attack: 50, defense: 30, force: 50, side: "Light", imageName: "card_basic_front_leia.png", sfxName: "sfx_basic_leia.mp3" },
+    { name: 'Chewbacca', attack: 80, defense: 50, force: 10, side: "Light", imageName: "card_basic_front_chew.png", sfxName: "sfx_basic_chew.mp3" },
+    { name: 'Boba Fett', attack: 70, defense: 70, force: 0, side: "Dark", imageName: "card_basic_front_boba.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Darth Vader', attack: 99, defense: 80, force: 90, side: "Dark", imageName: "card_basic_front_vader.png", sfxName: "sfx_basic_vader.mp3" },
+    { name: 'Obi-Wan Kenobi', attack: 80, defense: 99, force: 80, side: "Light", imageName: "card_basic_front_obi.png", sfxName: "sfx_basic_obi.mp3" },
+    { name: 'Yoda', attack: 80, defense: 90, force: 99, side: "Light", imageName: "card_basic_front_yoda.png", sfxName: "sfx_basic_yoda.mp3" },
+    { name: 'Rey', attack: 70, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_rey.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'Grogu', attack: 50, defense: 30, force: 99, side: "Light", imageName: "card_basic_front_grogu.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'R2-D2', attack: 50, defense: 50, force: 0, side: "Light", imageName: "card_basic_front_r2d2.png", sfxName: "sfx_basic_r2d2.mp3" },
+    { name: 'C-3PO', attack: 10, defense: 10, force: 0, side: "Light", imageName: "card_basic_front_c3po.png", sfxName: "sfx_basic_c3po.mp3" },
+    { name: 'Anakin Skywalker', attack: 90, defense: 80, force: 80, side: "Light", imageName: "card_basic_front_anakin.png", sfxName: "sfx_basic_anakin.mp3" },
+    { name: 'Darth Sidious', attack: 70, defense: 70, force: 99, side: "Dark", imageName: "card_basic_front_sidious.png", sfxName: "sfx_basic_sidious.mp3" },
+    { name: 'Jar Jar Binks', attack: 0, defense: 0, force: 0, side: "Light", imageName: "card_basic_front_binks.png", sfxName: "sfx_basic_binks.mp3" },
+    { name: 'Grand Moff Tarkin', attack: 70, defense: 30, force: 0, side: "Dark", imageName: "card_basic_front_tarkin.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Mace Windu', attack: 80, defense: 70, force: 90, side: "Light", imageName: "card_basic_front_windu.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'Darth Maul', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_maul.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'Qui-Gon Jinn', attack: 70, defense: 70, force: 80, side: "Light", imageName: "card_basic_front_quigon.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'Padme Amidala', attack: 40, defense: 30, force: 10, side: "Light", imageName: "card_basic_front_padme.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'General Grievous', attack: 70, defense: 80, force: 0, side: "Dark", imageName: "card_basic_front_grevious.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'Kylo Ren', attack: 80, defense: 70, force: 70, side: "Dark", imageName: "card_basic_front_kylo.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'Finn', attack: 60, defense: 50, force: 30, side: "Light", imageName: "card_basic_front_finn.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Poe Dameron', attack: 50, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_poe.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Supreme Leader Snoke', attack: 60, defense: 50, force: 90, side: "Dark", imageName: "card_basic_front_snoke.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'General Hux', attack: 50, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_hux.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Maz Kanata', attack: 50, defense: 30, force: 40, side: "Light", imageName: "card_basic_front_kanata.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Captain Phasma', attack: 70, defense: 60, force: 40, side: "Dark", imageName: "card_basic_front_phasma.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Chief Chirpa', attack: 30, defense: 30, force: 0, side: "Light", imageName: "card_basic_front_chirpa.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Count Dooku', attack: 70, defense: 60, force: 60, side: "Dark", imageName: "card_basic_front_dooku.png", sfxName: "sfx_basic_saber.mp3" },
+    { name: 'Lando Calrissian', attack: 80, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_lando.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Nien Nunb', attack: 70, defense: 60, force: 0, side: "Light", imageName: "card_basic_front_nunb.png", sfxName: "sfx_basic_blaster.mp3" },
+    { name: 'Jabba The Hutt', attack: 30, defense: 10, force: 0, side: "Dark", imageName: "card_basic_front_jabba.png", sfxName: "sfx_basic_jabba.mp3" },
+    { name: 'BB-8', attack: 30, defense: 40, force: 0, side: "Light", imageName: "card_basic_front_bb8.png", sfxName: "sfx_basic_r2d2.mp3" },
+    { name: 'Admiral Ackbar', attack: 70, defense: 50, force: 0, side: "Dark", imageName: "card_basic_front_ackbar.png", sfxName: "sfx_basic_ackbar.mp3" },
+    { name: 'Jocasta Nu', attack: 0, defense: 10, force: 70, side: "Light", imageName: "card_basic_front_nu.png", sfxName: "sfx_basic_saber.mp3" }
 
 
 ];
@@ -363,7 +363,7 @@ function checkGameEnd() {
 }
 
 function playCard() {
-  console.log('button click registered');
+  console.log('button click registered this one');
   // hide play card button
   document.getElementById("play-card").style.display = "none";
 
@@ -373,6 +373,20 @@ function playCard() {
   if (playerCard) {
     playerCard.classList.add("flipped");
   }
+  
+  console.log(playerCard.parentElement.getAttribute('data-name'));
+  let cardName = playerCard.parentElement.getAttribute('data-name')
+  
+  
+  for (let i = 0; i < characters.length; i++) {
+    if (characters[i].name == cardName) {
+        let sfxName = (characters[i].sfxName)
+        console.log(`playing ${sfxName}`)
+        new Audio(`assets/sfx/${sfxName}`).play();
+    }
+}
+    
+    
 
   // reveal attr buttons
   const attrButtons = document.getElementsByClassName("attr-button");
