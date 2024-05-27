@@ -326,6 +326,67 @@ button:hover {
     justify-content: center;
 }
 
+/* Victory Screen */
+
+#victory-screen {
+    background: url("assets/images/background/victory-gif.gif") center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 5;
+    width: 90%;
+    height: 90%;
+    border-radius: 15px;
+    border: 5px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#victory-screen h1 {
+    font-size: 3em;
+    margin: 0.2em;
+}
+
+#victory-screen .button {
+    position: relative;
+    background-color: #007BFF;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+#victory-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+#victory-screen .button:hover {
+    background-color: #0056b3;
+}
+
+/* https://www.w3schools.com/cssref/func_attr.php */
+/* https://css-tricks.com/almanac/selectors/a/after-and-before/c*/
+#victory-screen .button::before {
+    content: attr(data-original-text);
+}
+
+#play-again-yes:hover::before {
+    content: attr(data-hover-text);
+}
+
+#play-again-no:hover::before {
+    content: attr(data-hover-text);
+}
+
 /* Media query: tablets and larger (768px and up) */
 @media screen and (min-width: 768px) {
 
